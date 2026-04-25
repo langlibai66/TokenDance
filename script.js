@@ -10,12 +10,12 @@ const scenes = [
     copy: "正值春末夏初，是跑山的好季节。去莫干山吧，感受经典赛道与山野风光。",
     day1: "Day 1",
     day2: "Day 2",
-    caption: "春季山野路线与博主攻略卡片的组合展示。",
-    detailTitle: "整屏切页让山野攻略更好展示",
-    detailCopy: "先讲概念，再放大手机界面，最后补充设计价值。用户不会卡在半屏，也不会在说明和原型之间来回分神。",
+    caption: "春季山野路线、天气信息与达人推荐的组合内容。",
+    detailTitle: "莫干山的春日户外灵感",
+    detailCopy: "把路线、天气和山野体验浓缩在同一张卡片里，更适合快速完成出行决策。",
     detailFit: "适合想做周末轻户外计划、又希望内容像短视频一样轻松易看的用户。",
-    detailRhythm: "第一页收信息，第二页看完整原型，第三页收结论，浏览路径更自然。",
-    detailHighlight: "用沉浸式背景和玻璃态卡片承接 AI 攻略内容，兼顾短视频感与信息密度。",
+    detailRhythm: "先被目的地吸引，再快速了解路线和体验重点，浏览节奏更轻松。",
+    detailHighlight: "用沉浸式背景和玻璃态卡片承接 AI 攻略内容，兼顾内容氛围与信息密度。",
     creators: [
       {
         quote: "“去越野跑吧！钻林子当猴子其乐无穷！”",
@@ -41,10 +41,10 @@ const scenes = [
     day1: "Camp",
     day2: "Hike",
     caption: "露营与徒步结合的周末路线，更偏氛围感和社交感。",
-    detailTitle: "第二个场景偏向放松型周末内容",
-    detailCopy: "这一组内容更适合展示短视频里的生活方式气质。路线信息简洁，重点放在氛围、日落、云海和结伴体验。",
+    detailTitle: "安吉竹海的放松型周末路线",
+    detailCopy: "这一组内容更偏向轻露营与生活方式体验，重点放在竹海、日落、云海和结伴出发的氛围。",
     detailFit: "适合情侣、朋友组队、偏爱拍照和慢节奏户外体验的人群。",
-    detailRhythm: "先种草氛围，再交代路线和天气，整体更像内容平台里的生活方式推荐。",
+    detailRhythm: "先种草氛围，再交代路线和天气，整体更贴近日常刷到的旅行内容。",
     detailHighlight: "画面感更强，适合后续加露营清单、日落时间和拍照机位等补充信息。",
     creators: [
       {
@@ -71,8 +71,8 @@ const scenes = [
     day1: "AM",
     day2: "PM",
     caption: "更轻决策的一日行程，强调近郊逃离和低门槛出发。",
-    detailTitle: "第三个场景更适合快节奏决策",
-    detailCopy: "一日路线天然适合短视频信息流。用户能很快理解目的地、时长和体验内容，适合做高转化入口。",
+    detailTitle: "雁荡山的一日登高路线",
+    detailCopy: "一日路线天然适合快速浏览，用户能很快理解目的地、时长和体验内容，降低出发门槛。",
     detailFit: "适合临时起意的周末出行人群，尤其适合想要低成本短逃离的用户。",
     detailRhythm: "信息密度最高，但仍然控制在一屏内完成表达，保留浏览效率。",
     detailHighlight: "突出路线效率和低门槛，让手机屏里的攻略卡片更接近真实产品转化页。",
@@ -108,6 +108,9 @@ const elements = {
   creators: document.getElementById("creator-list"),
   shuffle: document.getElementById("shuffle-btn"),
   sceneCaption: document.getElementById("scene-caption"),
+  sideDestination: document.getElementById("side-destination"),
+  sideDays: document.getElementById("side-days"),
+  sideHighlight: document.getElementById("side-highlight"),
   detailTitle: document.getElementById("detail-title"),
   detailCopy: document.getElementById("detail-copy"),
   detailFit: document.getElementById("detail-fit"),
@@ -155,6 +158,9 @@ function renderScene(index) {
   elements.day1.textContent = scene.day1;
   elements.day2.textContent = scene.day2;
   elements.sceneCaption.textContent = scene.caption;
+  elements.sideDestination.textContent = scene.destination;
+  elements.sideDays.textContent = scene.days;
+  elements.sideHighlight.textContent = scene.detailHighlight;
   elements.detailTitle.textContent = scene.detailTitle;
   elements.detailCopy.textContent = scene.detailCopy;
   elements.detailFit.textContent = scene.detailFit;

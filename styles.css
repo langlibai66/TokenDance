@@ -247,14 +247,9 @@ button {
 
 .device-layout {
   display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  gap: 26px;
-}
-
-.section-head {
-  max-width: 720px;
-  text-align: center;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  align-items: center;
+  gap: 44px;
 }
 
 .section-head h2,
@@ -264,15 +259,14 @@ button {
 
 .device-stage {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 18px;
+  justify-content: center;
 }
 
 .phone-frame {
-  width: min(100%, 408px);
-  padding: 11px;
-  border-radius: 38px;
+  width: min(100%, 468px);
+  padding: 12px;
+  border-radius: 42px;
   background: linear-gradient(180deg, #101411 0%, #000 100%);
   box-shadow: 0 24px 110px rgba(0, 0, 0, 0.56);
 }
@@ -281,7 +275,7 @@ button {
   position: relative;
   aspect-ratio: 9 / 16;
   overflow: hidden;
-  border-radius: 32px;
+  border-radius: 34px;
   background: #184526;
 }
 
@@ -827,11 +821,11 @@ button {
   background: rgba(255, 255, 255, 0.95);
 }
 
-.device-controls {
+.device-side {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 18px;
 }
 
 .scene-switcher {
@@ -851,10 +845,37 @@ button {
 .device-caption {
   margin: 0;
   color: var(--muted);
-  max-width: 280px;
+  max-width: 260px;
   font-size: 13px;
   line-height: 1.6;
-  text-align: center;
+}
+
+.side-note-grid {
+  width: 100%;
+  display: grid;
+  gap: 12px;
+}
+
+.side-note-card {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.side-note-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted-soft);
+  font-size: 12px;
+}
+
+.side-note-card strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
 }
 
 .detail-layout {
@@ -885,6 +906,26 @@ button {
 @media (max-width: 920px) {
   .panel {
     padding-right: 52px;
+  }
+
+  .device-layout {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 22px;
+  }
+
+  .device-side {
+    width: min(100%, 420px);
+    align-items: center;
+  }
+
+  .device-caption {
+    max-width: 420px;
+    text-align: center;
+  }
+
+  .side-note-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .hero-metrics,
@@ -922,7 +963,7 @@ button {
   }
 
   .phone-frame {
-    width: min(100%, 360px);
+    width: min(100%, 380px);
     padding: 8px;
     border-radius: 28px;
   }
@@ -987,6 +1028,28 @@ button {
   .cta-row {
     left: 16px;
     right: 16px;
+  }
+
+  .device-side {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .scene-switcher {
+    justify-content: center;
+  }
+
+  .device-caption {
+    max-width: none;
+    text-align: center;
+  }
+
+  .side-note-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .side-note-card strong {
+    font-size: 16px;
   }
 
   .detail-card strong {
