@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import bus, { EVENT_KEY } from '@/utils/bus'
 import { inject, reactive } from 'vue'
 
 const props = defineProps({
@@ -37,7 +38,7 @@ const state = reactive({
         </div>
       </div>
       <div class="live" v-if="props.isLive">直播中</div>
-      <div class="name mb1r f18 fb">
+      <div class="name mb1r f18 fb" @click.stop="bus.emit(EVENT_KEY.GO_USERINFO)">
         @{{ item?.author?.nickname }}
       </div>
       <div class="description">

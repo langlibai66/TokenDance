@@ -58,6 +58,13 @@ function collected() {
   }
 }
 
+function attention(e) {
+  e.currentTarget.classList.add('attention')
+  setTimeout(() => {
+    _updateItem(props, 'isAttention', true)
+  }, 1000)
+}
+
 const vClick = useClick()
 </script>
 
@@ -70,7 +77,7 @@ const vClick = useClick()
         alt=""
       />
       <transition name="fade">
-        <div v-if="!item.isAttention" class="options">
+        <div v-if="!item.isAttention" v-click="attention" class="options">
           <img class="no" src="../../assets/img/icon/add-light.png" alt="" />
           <img class="yes" src="../../assets/img/icon/ok-red.png" alt="" />
         </div>

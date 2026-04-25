@@ -17,7 +17,7 @@
       <span :class="{ active: currentTab === 4 }">消息</span>
       <div class="badge">2</div>
     </div>
-    <div class="l-button">
+    <div class="l-button" @click="tab(5)">
       <span :class="{ active: currentTab === 5 }">我</span>
     </div>
   </div>

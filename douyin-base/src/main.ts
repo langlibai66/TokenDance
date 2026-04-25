@@ -10,8 +10,8 @@ import { useClick } from '@/utils/hooks/useClick'
 import bus, { EVENT_KEY } from '@/utils/bus'
 
 window.isMoved = false
-window.isMuted = true
-window.showMutedNotice = true
+window.isMuted = false
+window.showMutedNotice = false
 HTMLElement.prototype.addEventListener = new Proxy(HTMLElement.prototype.addEventListener, {
   apply(target, ctx, args) {
     const eventName = args[0]
