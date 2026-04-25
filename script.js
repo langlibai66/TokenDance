@@ -1,59 +1,111 @@
 const scenes = [
   {
-    kicker: "18:30 晚饭时段",
-    title: "今晚适合来一份热汤面",
-    summary: "下雨、降温、刚下班，AI 推荐一张更适合此刻的轻决策卡片。",
-    tag: "吃什么",
-    highlight: "推荐方案：番茄肥牛汤面 + 溏心蛋",
-    reason: "热量适中、饱腹感强，适合忙碌后的快速恢复，也更适合阴雨天气的胃口。",
-    time: "22 分钟",
-    budget: "25-35 元",
-    style: "暖胃优先",
-    actions: ["想要同款", "更省钱", "不想吃面"]
+    tag: "AI生成",
+    kicker: "春季徒步推荐",
+    title: "莫干山清明越野跑攻略",
+    destination: "湖州·莫干山",
+    days: "2天",
+    weather: "15-25°C",
+    scenery: "植被丰茂",
+    copy: "正值春末夏初，是跑山的好季节。去莫干山吧，感受经典赛道与山野风光。",
+    day1: "Day 1",
+    day2: "Day 2",
+    creators: [
+      {
+        quote: "“去越野跑吧！钻林子当猴子其乐无穷！”",
+        text: "笨蛋哒：去自然里坐坐好舒服呀，庾村好吃很多，有很多条越野跑路线",
+        thumbClass: "thumb-a"
+      },
+      {
+        quote: "“莫干山山顶喝咖啡超 nice！”",
+        text: "淡人周末：雨天进山，一个人去莫干山顶喝咖啡真是太 nice 了",
+        thumbClass: "thumb-b"
+      }
+    ]
   },
   {
-    kicker: "周六 10:00 周末状态",
-    title: "今天适合一场轻出逃",
-    summary: "天气晴、路程短、拍照友好，AI 生成一个半日微出行方案。",
-    tag: "去哪儿",
-    highlight: "推荐路线：滨江步道 + 咖啡店 + 日落观景点",
-    reason: "动线轻松、节奏舒服，不需要复杂准备，适合临时出门和朋友小聚。",
-    time: "4 小时",
-    budget: "60-120 元",
-    style: "轻松出片",
-    actions: ["换成省钱版", "我想拍照", "适合约会吗"]
+    tag: "AI生成",
+    kicker: "周末山野露营",
+    title: "安吉竹海两天一夜轻露营",
+    destination: "湖州·安吉",
+    days: "2天1夜",
+    weather: "18-26°C",
+    scenery: "竹林云海",
+    copy: "适合朋友结伴出发，白天徒步看竹海，傍晚在山顶看日落，晚上围炉聊天。",
+    day1: "Camp",
+    day2: "Hike",
+    creators: [
+      {
+        quote: "“这条线新手也能冲，风景密度很高。”",
+        text: "阿卷：中午到达直接进山，沿途机位很多，拍人像和自然景都很出片",
+        thumbClass: "thumb-b"
+      },
+      {
+        quote: "“清晨从帐篷拉开拉链就是云海。”",
+        text: "木子：如果天气好，第二天早起会很值，整个体验非常松弛",
+        thumbClass: "thumb-a"
+      }
+    ]
   },
   {
-    kicker: "赛前 30 分钟",
-    title: "你关注的比赛快开始了",
-    summary: "AI 把阵容、看点和悬念压缩成一张赛前卡，适合在信息流中快速消费。",
-    tag: "看比赛",
-    highlight: "核心看点：双核对位，节奏与三分命中率决定走势",
-    reason: "不用打开资讯 App，就能在一眼之内知道这场比赛为什么值得看。",
-    time: "30 秒读完",
-    budget: "信息即得",
-    style: "赛前速览",
-    actions: ["展开阵容", "看关键球员", "提醒我开赛"]
+    tag: "AI生成",
+    kicker: "城市近郊微度假",
+    title: "雁荡山一日登高路线",
+    destination: "温州·雁荡山",
+    days: "1天",
+    weather: "17-23°C",
+    scenery: "山谷瀑布",
+    copy: "适合想要周末短逃离的人群，一天内完成登山、看瀑布和山间咖啡小憩。",
+    day1: "AM",
+    day2: "PM",
+    creators: [
+      {
+        quote: "“走到山谷深处会突然安静下来，很治愈。”",
+        text: "七七：建议轻装出发，穿防滑鞋，午后光线打在瀑布上特别好看",
+        thumbClass: "thumb-a"
+      },
+      {
+        quote: "“景点之间衔接顺，拍照和赶路都不会太累。”",
+        text: "阿泽：很适合带家人或者和对象一起走，节奏舒服，不会太赶",
+        thumbClass: "thumb-b"
+      }
+    ]
   }
 ];
 
 const elements = {
-  kicker: document.getElementById("story-kicker"),
-  title: document.getElementById("story-title"),
-  summary: document.getElementById("story-summary"),
-  tag: document.getElementById("card-tag"),
-  highlight: document.getElementById("highlight-line"),
-  reason: document.getElementById("card-reason"),
-  time: document.getElementById("meta-time"),
-  budget: document.getElementById("meta-budget"),
-  style: document.getElementById("meta-style"),
-  actions: document.getElementById("card-actions"),
-  progress: document.getElementById("progress-fill"),
+  tag: document.getElementById("hero-tag"),
+  kicker: document.getElementById("hero-kicker"),
+  title: document.getElementById("hero-title"),
+  destination: document.getElementById("meta-destination"),
+  days: document.getElementById("meta-days"),
+  weather: document.getElementById("meta-weather"),
+  scenery: document.getElementById("meta-scenery"),
+  copy: document.getElementById("card-copy"),
+  day1: document.getElementById("route-day-1"),
+  day2: document.getElementById("route-day-2"),
+  creators: document.getElementById("creator-list"),
   shuffle: document.getElementById("shuffle-btn"),
-  dots: Array.from(document.querySelectorAll(".scene-dot"))
+  dots: Array.from(document.querySelectorAll(".scene-dot")),
+  progressPills: Array.from(document.querySelectorAll(".progress-pill"))
 };
 
 let currentIndex = 0;
+
+function renderCreators(creators) {
+  elements.creators.innerHTML = "";
+
+  creators.forEach((creator) => {
+    const card = document.createElement("article");
+    card.className = "creator-card";
+    card.innerHTML = `
+      <blockquote>${creator.quote}</blockquote>
+      <p>${creator.text}</p>
+      <div class="creator-thumb ${creator.thumbClass}"></div>
+    `;
+    elements.creators.appendChild(card);
+  });
+}
 
 function renderScene(index) {
   const scene = scenes[index];
@@ -61,43 +113,39 @@ function renderScene(index) {
     return;
   }
 
+  elements.tag.textContent = scene.tag;
   elements.kicker.textContent = scene.kicker;
   elements.title.textContent = scene.title;
-  elements.summary.textContent = scene.summary;
-  elements.tag.textContent = scene.tag;
-  elements.highlight.textContent = scene.highlight;
-  elements.reason.textContent = scene.reason;
-  elements.time.textContent = scene.time;
-  elements.budget.textContent = scene.budget;
-  elements.style.textContent = scene.style;
-  elements.progress.style.width = `${((index + 1) / scenes.length) * 100}%`;
+  elements.destination.textContent = scene.destination;
+  elements.days.textContent = scene.days;
+  elements.weather.textContent = scene.weather;
+  elements.scenery.textContent = scene.scenery;
+  elements.copy.textContent = scene.copy;
+  elements.day1.textContent = scene.day1;
+  elements.day2.textContent = scene.day2;
 
-  elements.actions.innerHTML = "";
-  scene.actions.forEach((label) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = label;
-    elements.actions.appendChild(button);
-  });
+  renderCreators(scene.creators);
 
   elements.dots.forEach((dot, dotIndex) => {
     dot.classList.toggle("is-active", dotIndex === index);
+  });
+
+  elements.progressPills.forEach((pill, pillIndex) => {
+    pill.classList.toggle("is-active", pillIndex === index);
   });
 
   currentIndex = index;
 }
 
 function showNextScene() {
-  const nextIndex = (currentIndex + 1) % scenes.length;
-  renderScene(nextIndex);
+  renderScene((currentIndex + 1) % scenes.length);
 }
 
 elements.shuffle.addEventListener("click", showNextScene);
 
 elements.dots.forEach((dot) => {
   dot.addEventListener("click", () => {
-    const targetIndex = Number(dot.dataset.index);
-    renderScene(targetIndex);
+    renderScene(Number(dot.dataset.index));
   });
 });
 

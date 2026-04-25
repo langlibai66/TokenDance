@@ -3,157 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MomentCard | AI 短视频信息流卡片</title>
+  <title>MomentCard | 9:16 短视频展示界面</title>
   <meta
     name="description"
-    content="MomentCard 是一个面向短视频信息流场景的 AI 卡片原型，展示 16:9 画幅下的轻交互推荐体验。"
+    content="MomentCard 9:16 竖版短视频信息流原型，展示类似抖音信息流中的 AI 攻略卡片界面。"
   >
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">GitHub Showcase Prototype</span>
-        <h1>MomentCard</h1>
-        <p class="hero-text">
-          把 AI 做成一张刷到就能懂、点一下就能互动的信息流卡片。
-          这是一个为短视频内容场景设计的基础展示原型，重点演示 16:9 画幅下的首屏表达与轻交互。
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#prototype">查看原型</a>
-          <a class="btn btn-secondary" href="./README.md">阅读 README</a>
-        </div>
-        <ul class="hero-metrics">
-          <li>
-            <strong>16:9</strong>
-            <span>短视频展示容器</span>
-          </li>
-          <li>
-            <strong>3</strong>
-            <span>场景卡片切换</span>
-          </li>
-          <li>
-            <strong>0</strong>
-            <span>依赖即可运行</span>
-          </li>
-        </ul>
+  <main class="app-shell">
+    <section class="intro-panel">
+      <span class="eyebrow">9:16 Prototype</span>
+      <h1>短视频端 AI 攻略卡片</h1>
+      <p>
+        这一版改为接近短视频信息流的竖版展示方式，重点还原顶部频道栏、沉浸式背景、
+        攻略标题、玻璃态信息卡、底部按钮和导航区域。
+      </p>
+      <div class="intro-actions">
+        <button id="shuffle-btn" class="primary-btn" type="button">切换场景</button>
+        <a class="secondary-btn" href="./README.md">查看 README</a>
       </div>
+      <ul class="intro-metrics">
+        <li><strong>9:16</strong><span>手机端比例</span></li>
+        <li><strong>3</strong><span>攻略场景</span></li>
+        <li><strong>Feed</strong><span>信息流布局</span></li>
+      </ul>
+    </section>
 
-      <div class="hero-panel">
-        <div class="signal-bar">
-          <span>LIVE PROTOTYPE</span>
-          <span>AI Feed Experience</span>
-        </div>
-        <div class="mini-card">
-          <p>目标体验</p>
-          <strong>刷到即理解，点击即反馈</strong>
-          <span>适合 GitHub 首页展示、产品介绍与概念验证。</span>
-        </div>
-      </div>
-    </header>
+    <section class="device-stage">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="screen-background"></div>
+          <div class="screen-overlay"></div>
 
-    <main>
-      <section id="prototype" class="prototype-section">
-        <div class="section-heading">
-          <span class="eyebrow">16:9 Demo Screen</span>
-          <h2>基础短视频端展示界面</h2>
-          <p>
-            下方是一个 16:9 比例的信息流展示区，模拟短视频内容中插入 AI 卡片的效果。
-            你可以切换不同场景，查看标题、推荐理由和轻互动按钮的基础布局。
-          </p>
-        </div>
+          <header class="status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons" aria-hidden="true">
+              <span class="signal">
+                <i></i><i></i><i></i><i></i>
+              </span>
+              <span class="wifi"></span>
+              <span class="battery"><b></b></span>
+            </div>
+          </header>
 
-        <div class="stage">
-          <div class="stage-screen">
-            <div class="stage-background"></div>
-            <div class="stage-topbar">
-              <span class="chip">推荐流</span>
-              <span class="topbar-note">适配横屏展示与对外演示</span>
+          <nav class="top-nav">
+            <button class="icon-button" type="button" aria-label="菜单">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="nav-tabs">
+              <button type="button">团购</button>
+              <button type="button">经验</button>
+              <button type="button">北京</button>
+              <button type="button">关注</button>
+              <button type="button">商城</button>
+              <button class="is-active" type="button">推荐</button>
+            </div>
+            <button class="search-button" type="button" aria-label="搜索"></button>
+          </nav>
+
+          <section class="feed-content">
+            <div class="hero-copy">
+              <div class="hero-label-row">
+                <span class="hero-tag" id="hero-tag">AI生成</span>
+                <span class="hero-kicker" id="hero-kicker">春季徒步推荐</span>
+              </div>
+              <h2 id="hero-title">莫干山清明越野跑攻略</h2>
             </div>
 
-            <div class="story-copy">
-              <p class="story-kicker" id="story-kicker">18:30 晚饭时段</p>
-              <h3 id="story-title">今晚适合来一份热汤面</h3>
-              <p class="story-summary" id="story-summary">
-                下雨、降温、刚下班，AI 推荐一张更适合此刻的轻决策卡片。
-              </p>
-            </div>
-
-            <article class="info-card">
-              <div class="card-head">
-                <span class="card-tag" id="card-tag">吃什么</span>
-                <button id="shuffle-btn" class="ghost-btn" type="button">换一个</button>
+            <article class="glass-card">
+              <div class="stat-grid">
+                <div>
+                  <span>目的地</span>
+                  <strong id="meta-destination">湖州·莫干山</strong>
+                </div>
+                <div>
+                  <span>天数</span>
+                  <strong id="meta-days">2天</strong>
+                </div>
+                <div>
+                  <span>气温预计</span>
+                  <strong id="meta-weather">15-25°C</strong>
+                </div>
+                <div>
+                  <span>路线风景</span>
+                  <strong id="meta-scenery">植被丰茂</strong>
+                </div>
               </div>
 
-              <div class="card-body">
-                <div class="highlight-line" id="highlight-line">推荐方案：番茄肥牛汤面 + 溏心蛋</div>
-                <p id="card-reason">
-                  热量适中、饱腹感强，适合忙碌后的快速恢复，也更适合阴雨天气的胃口。
+              <div class="card-story">
+                <p id="card-copy">
+                  正值春末夏初，是跑山的好季节。去莫干山吧，感受经典赛道与山野风光。
                 </p>
-              </div>
-
-              <div class="card-meta">
-                <div>
-                  <span>预计耗时</span>
-                  <strong id="meta-time">22 分钟</strong>
+                <div class="route-visual">
+                  <span class="route-node route-node-a"></span>
+                  <span class="route-node route-node-b"></span>
+                  <span class="route-node route-node-c"></span>
+                  <span class="route-node route-node-d"></span>
+                  <span class="route-label route-label-a" id="route-day-1">Day 1</span>
+                  <span class="route-label route-label-b" id="route-day-2">Day 2</span>
+                  <svg viewBox="0 0 120 90" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M12 18 C34 14, 44 42, 66 34 S102 38, 104 56" />
+                    <path d="M34 62 C52 50, 68 54, 82 72 S98 74, 104 82" />
+                  </svg>
                 </div>
-                <div>
-                  <span>预算区间</span>
-                  <strong id="meta-budget">25-35 元</strong>
-                </div>
-                <div>
-                  <span>推荐理由</span>
-                  <strong id="meta-style">暖胃优先</strong>
-                </div>
-              </div>
-
-              <div class="card-actions" id="card-actions">
-                <button type="button">想要同款</button>
-                <button type="button">更省钱</button>
-                <button type="button">不想吃面</button>
               </div>
             </article>
 
-            <aside class="side-actions">
-              <button type="button" aria-label="点赞">Like</button>
-              <button type="button" aria-label="收藏">Save</button>
-              <button type="button" aria-label="分享">Share</button>
-            </aside>
+            <section class="creator-section">
+              <div class="section-label">运动&旅行博主攻略</div>
+              <div class="creator-list" id="creator-list">
+                <article class="creator-card">
+                  <blockquote>“去越野跑吧！钻林子当猴子其乐无穷！”</blockquote>
+                  <p>笨蛋哒：去自然里坐坐好舒服呀，庾村好吃很多，有很多条越野跑路线</p>
+                  <div class="creator-thumb thumb-a"></div>
+                </article>
+                <article class="creator-card">
+                  <blockquote>“莫干山山顶喝咖啡超 nice！”</blockquote>
+                  <p>淡人周末：雨天进山，一个人去莫干山顶喝咖啡真是太 nice 了</p>
+                  <div class="creator-thumb thumb-b"></div>
+                </article>
+              </div>
+            </section>
+          </section>
 
-            <div class="stage-footer">
-              <div class="progress-track">
-                <span class="progress-fill" id="progress-fill"></span>
-              </div>
-              <div class="scene-switcher" id="scene-switcher">
-                <button class="scene-dot is-active" type="button" data-index="0" aria-label="场景 1"></button>
-                <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
-                <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
-              </div>
-            </div>
+          <div class="feed-progress">
+            <span class="progress-pill is-active"></span>
+            <span class="progress-pill"></span>
+            <span class="progress-pill"></span>
+            <span class="progress-pill"></span>
+            <span class="progress-pill"></span>
           </div>
-        </div>
-      </section>
 
-      <section class="feature-grid">
-        <article>
-          <span class="eyebrow">01</span>
-          <h3>刷到即成立</h3>
-          <p>首屏只展示一句场景判断、一条核心推荐和少量轻操作，降低理解门槛。</p>
-        </article>
-        <article>
-          <span class="eyebrow">02</span>
-          <h3>内容像服务</h3>
-          <p>形式像信息流内容，结果却更像即时服务，适合推荐、决策和场景提醒。</p>
-        </article>
-        <article>
-          <span class="eyebrow">03</span>
-          <h3>适合 GitHub 展示</h3>
-          <p>零依赖、结构清晰、可直接部署到静态托管平台，方便做概念验证与分享。</p>
-        </article>
-      </section>
-    </main>
-  </div>
+          <div class="cta-row" id="cta-row">
+            <button type="button" class="ghost-cta">不感兴趣</button>
+            <button type="button" class="primary-cta">查看详情</button>
+          </div>
+
+          <div class="continue-tip">^ 上滑继续看视频</div>
+
+          <footer class="bottom-tabbar">
+            <button class="is-current" type="button">首页</button>
+            <button type="button">朋友</button>
+            <button class="tab-plus" type="button" aria-label="发布">+</button>
+            <button type="button">消息</button>
+            <button type="button">我</button>
+          </footer>
+
+          <div class="home-indicator"></div>
+        </div>
+      </div>
+
+      <div class="scene-switcher">
+        <button class="scene-dot is-active" type="button" data-index="0" aria-label="场景 1"></button>
+        <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
+        <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
+      </div>
+    </section>
+  </main>
 
   <script src="./script.js"></script>
 </body>
