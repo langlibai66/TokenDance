@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MomentCard | AI 短视频信息流卡片</title>
+  <meta
+    name="description"
+    content="MomentCard 是一个面向短视频信息流场景的 AI 卡片原型，展示 16:9 画幅下的轻交互推荐体验。"
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">GitHub Showcase Prototype</span>
+        <h1>MomentCard</h1>
+        <p class="hero-text">
+          把 AI 做成一张刷到就能懂、点一下就能互动的信息流卡片。
+          这是一个为短视频内容场景设计的基础展示原型，重点演示 16:9 画幅下的首屏表达与轻交互。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#prototype">查看原型</a>
+          <a class="btn btn-secondary" href="./README.md">阅读 README</a>
+        </div>
+        <ul class="hero-metrics">
+          <li>
+            <strong>16:9</strong>
+            <span>短视频展示容器</span>
+          </li>
+          <li>
+            <strong>3</strong>
+            <span>场景卡片切换</span>
+          </li>
+          <li>
+            <strong>0</strong>
+            <span>依赖即可运行</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-panel">
+        <div class="signal-bar">
+          <span>LIVE PROTOTYPE</span>
+          <span>AI Feed Experience</span>
+        </div>
+        <div class="mini-card">
+          <p>目标体验</p>
+          <strong>刷到即理解，点击即反馈</strong>
+          <span>适合 GitHub 首页展示、产品介绍与概念验证。</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="prototype" class="prototype-section">
+        <div class="section-heading">
+          <span class="eyebrow">16:9 Demo Screen</span>
+          <h2>基础短视频端展示界面</h2>
+          <p>
+            下方是一个 16:9 比例的信息流展示区，模拟短视频内容中插入 AI 卡片的效果。
+            你可以切换不同场景，查看标题、推荐理由和轻互动按钮的基础布局。
+          </p>
+        </div>
+
+        <div class="stage">
+          <div class="stage-screen">
+            <div class="stage-background"></div>
+            <div class="stage-topbar">
+              <span class="chip">推荐流</span>
+              <span class="topbar-note">适配横屏展示与对外演示</span>
+            </div>
+
+            <div class="story-copy">
+              <p class="story-kicker" id="story-kicker">18:30 晚饭时段</p>
+              <h3 id="story-title">今晚适合来一份热汤面</h3>
+              <p class="story-summary" id="story-summary">
+                下雨、降温、刚下班，AI 推荐一张更适合此刻的轻决策卡片。
+              </p>
+            </div>
+
+            <article class="info-card">
+              <div class="card-head">
+                <span class="card-tag" id="card-tag">吃什么</span>
+                <button id="shuffle-btn" class="ghost-btn" type="button">换一个</button>
+              </div>
+
+              <div class="card-body">
+                <div class="highlight-line" id="highlight-line">推荐方案：番茄肥牛汤面 + 溏心蛋</div>
+                <p id="card-reason">
+                  热量适中、饱腹感强，适合忙碌后的快速恢复，也更适合阴雨天气的胃口。
+                </p>
+              </div>
+
+              <div class="card-meta">
+                <div>
+                  <span>预计耗时</span>
+                  <strong id="meta-time">22 分钟</strong>
+                </div>
+                <div>
+                  <span>预算区间</span>
+                  <strong id="meta-budget">25-35 元</strong>
+                </div>
+                <div>
+                  <span>推荐理由</span>
+                  <strong id="meta-style">暖胃优先</strong>
+                </div>
+              </div>
+
+              <div class="card-actions" id="card-actions">
+                <button type="button">想要同款</button>
+                <button type="button">更省钱</button>
+                <button type="button">不想吃面</button>
+              </div>
+            </article>
+
+            <aside class="side-actions">
+              <button type="button" aria-label="点赞">Like</button>
+              <button type="button" aria-label="收藏">Save</button>
+              <button type="button" aria-label="分享">Share</button>
+            </aside>
+
+            <div class="stage-footer">
+              <div class="progress-track">
+                <span class="progress-fill" id="progress-fill"></span>
+              </div>
+              <div class="scene-switcher" id="scene-switcher">
+                <button class="scene-dot is-active" type="button" data-index="0" aria-label="场景 1"></button>
+                <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
+                <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-grid">
+        <article>
+          <span class="eyebrow">01</span>
+          <h3>刷到即成立</h3>
+          <p>首屏只展示一句场景判断、一条核心推荐和少量轻操作，降低理解门槛。</p>
+        </article>
+        <article>
+          <span class="eyebrow">02</span>
+          <h3>内容像服务</h3>
+          <p>形式像信息流内容，结果却更像即时服务，适合推荐、决策和场景提醒。</p>
+        </article>
+        <article>
+          <span class="eyebrow">03</span>
+          <h3>适合 GitHub 展示</h3>
+          <p>零依赖、结构清晰、可直接部署到静态托管平台，方便做概念验证与分享。</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
