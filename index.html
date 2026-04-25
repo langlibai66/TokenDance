@@ -1,359 +1,176 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MomentCard | 电动牙刷导购短视频卡</title>
-  <meta
-    name="description"
-    content="MomentCard 9:16 竖版短视频导购页，用电动牙刷商品图、六维自动评分、测评视频和商城跳转模拟真实信息流卡片。"
-  >
+  <title>电动牙刷雷达图对比卡</title>
+  <meta name="description" content="固定三款电动牙刷对比卡，支持切换与滑动查看雷达图变化动效。">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main class="page-shell">
-    <div class="page-glow page-glow-a"></div>
-    <div class="page-glow page-glow-b"></div>
-
-    <aside class="page-rail" aria-label="页面导航">
-      <button class="page-dot is-active" type="button" data-panel-index="0" aria-label="第一页"></button>
-      <button class="page-dot" type="button" data-panel-index="1" aria-label="第二页"></button>
-      <button class="page-dot" type="button" data-panel-index="2" aria-label="第三页"></button>
-    </aside>
-
-    <div class="panel-track" id="panel-track">
-      <section class="panel panel-hero" data-panel>
-        <div class="hero-card">
-          <span class="eyebrow">MomentCard</span>
-          <h1>电动牙刷种草卡片</h1>
-          <p class="hero-text">
-            把真实商品图、六维自动评分、测评视频依据和商城跳转入口放进同一张 9:16 卡片，
-            让导购内容像短视频一样更容易浏览、比较和转化。
-          </p>
-          <div class="hero-actions">
-            <button id="shuffle-btn" class="primary-btn" type="button">切换场景</button>
+  <main class="app-shell">
+    <section class="phone-shell" aria-label="抖音风 9:16 对比界面">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <header class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons" aria-hidden="true">
+            <span class="signal-bars"><i></i><i></i><i></i><i></i></span>
+            <span class="wifi-dot"></span>
+            <span class="battery-pill"><b></b></span>
           </div>
-          <ul class="hero-metrics">
-            <li><strong>9:16</strong><span>竖版手机比例</span></li>
-            <li><strong>3</strong><span>牙刷商品切换</span></li>
-            <li><strong>Radar</strong><span>六维自动评分</span></li>
-          </ul>
-        </div>
-        <div class="panel-tip">
-          <span></span>
-          <p>商品图、测评视频、商城跳转与六维评分联动展示</p>
-        </div>
-      </section>
+        </header>
 
-      <section class="panel panel-device" data-panel>
-        <div class="device-layout">
-          <div class="device-stage">
-            <div class="phone-frame">
-              <div class="phone-screen">
-                <div class="screen-background"></div>
-                <div class="screen-overlay"></div>
+        <nav class="top-nav">
+          <button type="button">关注</button>
+          <button class="is-active" type="button">推荐</button>
+          <button type="button">商城</button>
+          <button type="button">对比</button>
+        </nav>
 
-                <header class="status-bar">
-                  <span class="status-time">9:41</span>
-                  <div class="status-icons" aria-hidden="true">
-                    <span class="signal">
-                      <i></i><i></i><i></i><i></i>
-                    </span>
-                    <span class="wifi"></span>
-                    <span class="battery"><b></b></span>
-                  </div>
-                </header>
+        <section class="feed-stage">
+          <div class="feed-glow"></div>
 
-                <nav class="top-nav">
-                  <button class="icon-button" type="button" aria-label="菜单">
-                    <span></span><span></span><span></span>
-                  </button>
-                  <div class="nav-tabs">
-                    <button type="button" data-top-tab="group">团购</button>
-                    <button type="button" data-top-tab="tips">经验</button>
-                    <button type="button" data-top-tab="city">北京</button>
-                    <button type="button" data-top-tab="follow">关注</button>
-                    <button type="button" data-top-tab="shop">商城</button>
-                    <button class="is-active" type="button" data-top-tab="recommend">推荐</button>
-                  </div>
-                  <button class="search-button" type="button" aria-label="搜索"></button>
-                </nav>
+          <aside class="action-rail" aria-label="互动操作">
+            <div class="avatar-badge">AI</div>
+            <button class="rail-action" type="button"><span>赞</span><b>2.4w</b></button>
+            <button class="rail-action" type="button"><span>评</span><b>618</b></button>
+            <button class="rail-action" type="button"><span>藏</span><b>1.1k</b></button>
+            <button class="rail-action" type="button"><span>转</span><b>266</b></button>
+          </aside>
 
-                <section class="feed-content">
-                  <div class="hero-copy">
-                    <div class="hero-label-row">
-                      <span class="hero-tag" id="hero-tag">AI生成</span>
-                      <span class="hero-kicker" id="hero-kicker">春季徒步推荐</span>
-                    </div>
-                    <h3 id="hero-title">莫干山清明越野跑攻略</h3>
-                    <div class="topic-row" id="topic-row"></div>
-                  </div>
-
-                  <article class="glass-card">
-                    <div class="stat-grid">
-                      <div>
-                        <span id="meta-label-1">品牌</span>
-                        <strong id="meta-destination">Laifen</strong>
-                      </div>
-                      <div>
-                        <span id="meta-label-2">参考价</span>
-                        <strong id="meta-days">799 元</strong>
-                      </div>
-                      <div>
-                        <span id="meta-label-3">续航</span>
-                        <strong id="meta-weather">30 天</strong>
-                      </div>
-                      <div>
-                        <span id="meta-label-4">核心结构</span>
-                        <strong id="meta-scenery">60° 摆动 + 声波</strong>
-                      </div>
-                    </div>
-
-                    <div class="product-hero">
-                      <button class="product-image-wrap" id="product-image-link" type="button" aria-label="打开商品链接">
-                        <img
-                          id="product-image"
-                          src="https://ca.laifentech.com/cdn/shop/files/1080_a3cc2b50-3c30-4418-b9be-d902577a120e.jpg?v=1741657822"
-                          alt="Laifen Wave 商品图"
-                        />
-                      </button>
-
-                      <div class="product-hero-copy">
-                        <span class="product-badge" id="product-badge">官方商品图</span>
-                        <strong class="product-price" id="product-price">799 元</strong>
-                        <p class="product-summary" id="product-summary">
-                          主打 60° 摆动刷感和细软刷毛，适合想从普通声波牙刷升级到更高完成度体验的人。
-                        </p>
-                        <div class="spec-chip-row" id="spec-chip-row"></div>
-                      </div>
-                    </div>
-
-                    <div class="shop-mini-row">
-                      <a
-                        class="shop-link-button"
-                        id="shop-link"
-                        href="https://ca.laifentech.com/products/laifen-wave-electric-toothbrush"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        去商城页
-                      </a>
-                      <button class="shop-mini-button" id="video-link-btn" type="button">打开测评</button>
-                      <button class="shop-mini-button" id="replace-image-btn" type="button">替换商品图</button>
-                      <button class="shop-mini-button is-subtle" id="reset-image-btn" type="button">重置图片</button>
-                    </div>
-
-                    <div class="shop-status" id="shop-status">已接入真实商品图链接，可直接替换为任意商品图 URL。</div>
-
-                    <section class="radar-block">
-                      <div class="radar-visual">
-                        <div class="radar-head">
-                          <span class="radar-chip" id="radar-chip">自动评分</span>
-                          <strong id="radar-summary">六维评分</strong>
-                        </div>
-                        <div class="radar-stage">
-                          <div class="radar-score">
-                            <span id="radar-score-value">8.7</span>
-                            <small id="radar-score-label">自动推荐值</small>
-                          </div>
-                          <svg class="radar-chart" viewBox="0 0 180 180" aria-hidden="true">
-                            <g class="radar-grid">
-                              <polygon points="90,26 145.4,58 145.4,122 90,154 34.6,122 34.6,58"></polygon>
-                              <polygon points="90,39 134.1,64.5 134.1,115.5 90,141 45.9,115.5 45.9,64.5"></polygon>
-                              <polygon points="90,52 122.9,71 122.9,109 90,128 57.1,109 57.1,71"></polygon>
-                              <polygon points="90,65 111.7,77.5 111.7,102.5 90,115 68.3,102.5 68.3,77.5"></polygon>
-                              <polygon points="90,78 100.4,84 100.4,96 90,102 79.6,96 79.6,84"></polygon>
-                              <polygon points="90,91 90,91 90,91 90,91 90,91 90,91"></polygon>
-                              <line x1="90" y1="90" x2="90" y2="18"></line>
-                              <line x1="90" y1="90" x2="152.4" y2="54"></line>
-                              <line x1="90" y1="90" x2="152.4" y2="126"></line>
-                              <line x1="90" y1="90" x2="90" y2="162"></line>
-                              <line x1="90" y1="90" x2="27.6" y2="126"></line>
-                              <line x1="90" y1="90" x2="27.6" y2="54"></line>
-                            </g>
-                            <polygon class="radar-area" id="radar-area" points=""></polygon>
-                            <g class="radar-points" id="radar-points"></g>
-                          </svg>
-                          <div class="radar-label radar-label-top">
-                            <span id="radar-label-1">清洁力</span>
-                            <b id="radar-value-1">9.0</b>
-                          </div>
-                          <div class="radar-label radar-label-top-right">
-                            <span id="radar-label-2">续航</span>
-                            <b id="radar-value-2">8.5</b>
-                          </div>
-                          <div class="radar-label radar-label-bottom-right">
-                            <span id="radar-label-3">护龈</span>
-                            <b id="radar-value-3">8.6</b>
-                          </div>
-                          <div class="radar-label radar-label-bottom">
-                            <span id="radar-label-4">噪音</span>
-                            <b id="radar-value-4">7.8</b>
-                          </div>
-                          <div class="radar-label radar-label-bottom-left">
-                            <span id="radar-label-5">颜值</span>
-                            <b id="radar-value-5">9.2</b>
-                          </div>
-                          <div class="radar-label radar-label-top-left">
-                            <span id="radar-label-6">价格</span>
-                            <b id="radar-value-6">7.9</b>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="score-reason-list" id="score-reason-list"></div>
-                      <p class="score-footnote" id="score-footnote">
-                        清洁力看动力结构与振动效率，续航看充电周期，护龈看压力反馈与柔和模式，噪音看静音表现，颜值看材质与屏显，价格看当前档位。
-                      </p>
-                    </section>
-
-                    <div class="card-tabs" role="tablist" aria-label="卡片内容切换">
-                      <button class="card-tab is-active" type="button" data-card-tab="overview">亮点</button>
-                      <button class="card-tab" type="button" data-card-tab="evidence">依据</button>
-                      <button class="card-tab" type="button" data-card-tab="advice">建议</button>
-                    </div>
-
-                    <div class="card-panels">
-                      <section class="card-panel is-active" data-card-panel="overview">
-                        <div class="card-story">
-                          <p id="card-copy">
-                            用一条商品卡同时看主图、核心参数、测评依据和六维评分，更适合在短视频场景里快速完成判断。
-                          </p>
-                          <div class="metric-strip" id="metric-strip"></div>
-                          <div class="highlight-list" id="highlight-list"></div>
-                          <div class="highlight-detail" id="highlight-detail"></div>
-                        </div>
-                      </section>
-
-                      <section class="card-panel" data-card-panel="evidence">
-                        <div class="evidence-list" id="evidence-list"></div>
-                      </section>
-
-                      <section class="card-panel" data-card-panel="advice">
-                        <div class="advice-spotlight">
-                          <span class="advice-chip">购买建议</span>
-                          <h4 id="card-advice-title">先看测评，再决定是否跳转商城</h4>
-                          <p id="card-advice-copy">
-                            建议先通过测评视频确认刷感、噪音和护龈体验，再结合价格与续航判断是否适合自己的预算与使用习惯。
-                          </p>
-                        </div>
-
-                        <div class="advice-metrics">
-                          <div>
-                            <span>适合人群</span>
-                            <strong id="card-advice-fit">首次升级、重视体验</strong>
-                          </div>
-                          <div>
-                            <span>入手提醒</span>
-                            <strong id="card-advice-rhythm">先看刷头成本，再看主机功能</strong>
-                          </div>
-                        </div>
-
-                        <section class="creator-section">
-                          <div class="section-label" id="creator-section-label">测评视频依据</div>
-                          <div class="creator-list" id="creator-list"></div>
-                          <div class="creator-focus" id="creator-focus">
-                            <strong id="creator-focus-title">点击下方视频卡查看摘要</strong>
-                            <p id="creator-focus-copy">这里会显示当前选中测评视频的核心结论和观看建议。</p>
-                            <button class="focus-link-button" id="creator-focus-link" type="button">打开当前测评</button>
-                          </div>
-                        </section>
-                      </section>
-                    </div>
-                  </article>
-                </section>
-
-                <section class="feed-meta">
-                  <div class="feed-author-row">
-                    <strong id="feed-author">@AI推荐官</strong>
-                    <span id="feed-time">2 小时前</span>
-                  </div>
-                  <p class="feed-caption" id="feed-caption">
-                    用 60 秒看懂一支电动牙刷值不值得买，适合想快速决策的人。
-                  </p>
-                  <div class="feed-music">
-                    <span class="music-dot"></span>
-                    <p id="feed-music">原声 · AI推荐官</p>
-                  </div>
-                </section>
-
-                <div class="feed-progress">
-                  <span class="progress-pill is-active"></span>
-                  <span class="progress-pill"></span>
-                  <span class="progress-pill"></span>
-                </div>
-
-                <div class="cta-row">
-                  <button type="button" class="ghost-cta">查看评分</button>
-                  <button type="button" class="primary-cta">去商城</button>
-                </div>
-
-                <div class="continue-tip">上滑继续看视频</div>
-
-                <footer class="bottom-tabbar">
-                  <button class="is-current" type="button" data-bottom-tab="home">首页</button>
-                  <button type="button" data-bottom-tab="friends">朋友</button>
-                  <button class="tab-plus" type="button" aria-label="发布">+</button>
-                  <button type="button" data-bottom-tab="message">消息</button>
-                  <button type="button" data-bottom-tab="profile">我</button>
-                </footer>
-
-                <div class="home-indicator"></div>
+          <div class="feed-content">
+            <div class="control-row">
+              <div class="product-switcher" id="product-switcher" aria-label="商品切换"></div>
+              <div class="toolbar-actions">
+                <button class="ghost-button" id="prev-btn" type="button">上一款</button>
+                <button class="primary-button" id="next-btn" type="button">下一款</button>
               </div>
             </div>
-          </div>
 
-          <aside class="device-side">
-            <div class="scene-switcher">
-              <button class="scene-dot is-active" type="button" data-index="0" aria-label="场景 1"></button>
-              <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
-              <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
+            <div class="swipe-tip">左右滑动商品卡可触发雷达图变化</div>
+
+            <div class="swipe-card-shell" id="swipe-shell">
+              <div class="stack-card stack-card-back"></div>
+              <div class="stack-card stack-card-mid"></div>
+              <article class="product-card" id="product-card">
+                <div class="hero-row">
+                  <div class="product-visual" id="product-visual">
+                    <div class="visual-aura"></div>
+                    <div class="brush-figure">
+                      <span class="brush-head"></span>
+                      <span class="brush-neck"></span>
+                      <span class="brush-handle"></span>
+                      <span class="brush-accent"></span>
+                    </div>
+                  </div>
+
+                  <div class="product-main">
+                    <div class="product-card__top">
+                      <div>
+                        <span class="product-chip" id="product-chip">旗舰刷感</span>
+                        <h2 id="product-name">Laifen Wave</h2>
+                      </div>
+                      <div class="overall-box">
+                        <span>综合分</span>
+                        <strong id="overall-score">8.4</strong>
+                      </div>
+                    </div>
+
+                    <div class="product-meta">
+                      <div class="meta-item">
+                        <span>价位</span>
+                        <strong id="product-price">799 元</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span>续航</span>
+                        <strong id="product-battery">30 天</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span>动力</span>
+                        <strong id="product-motor">摆动 + 声波</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span>噪音</span>
+                        <strong id="product-noise">58 dB</strong>
+                      </div>
+                    </div>
+
+                    <p class="product-summary" id="product-summary">
+                      适合想从基础电动牙刷升级到更完整刷感的人，优点集中在清洁结构、做工和视觉质感。
+                    </p>
+
+                    <div class="tag-row" id="tag-row"></div>
+                  </div>
+                </div>
+              </article>
             </div>
-            <p class="device-caption" id="scene-caption">三支电动牙刷全部按同一套六维规则自动打分，并补齐商城跳转和测评视频依据。</p>
-            <div class="side-note-grid">
-              <article class="side-note-card">
-                <span id="side-label-1">品牌</span>
-                <strong id="side-destination">Laifen</strong>
-              </article>
-              <article class="side-note-card">
-                <span id="side-label-2">价位</span>
-                <strong id="side-days">799 元</strong>
-              </article>
-              <article class="side-note-card">
-                <span>推荐理由</span>
-                <strong id="side-highlight">商品图、测评视频、商城页和自动评分都收进一条抖音式卡片里。</strong>
-              </article>
+
+            <section class="radar-panel">
+              <div class="radar-panel__head">
+                <div>
+                  <span class="panel-kicker">六维雷达图</span>
+                  <h3 id="radar-title">Laifen Wave 评分轮廓</h3>
+                </div>
+                <p id="radar-copy">切换商品时，雷达图会从当前轮廓平滑过渡到下一款产品。</p>
+              </div>
+
+              <div class="radar-stage">
+                <svg class="radar-chart" viewBox="0 0 320 320" aria-hidden="true">
+                  <g class="radar-grid">
+                    <polygon points="160,38 265.65,99 265.65,221 160,282 54.35,221 54.35,99"></polygon>
+                    <polygon points="160,62 244.78,111 244.78,209 160,258 75.22,209 75.22,111"></polygon>
+                    <polygon points="160,86 223.91,123 223.91,197 160,234 96.09,197 96.09,123"></polygon>
+                    <polygon points="160,110 203.04,135 203.04,185 160,210 116.96,185 116.96,135"></polygon>
+                    <polygon points="160,134 182.17,147 182.17,173 160,186 137.83,173 137.83,147"></polygon>
+                    <line x1="160" y1="160" x2="160" y2="28"></line>
+                    <line x1="160" y1="160" x2="274.32" y2="94"></line>
+                    <line x1="160" y1="160" x2="274.32" y2="226"></line>
+                    <line x1="160" y1="160" x2="160" y2="292"></line>
+                    <line x1="160" y1="160" x2="45.68" y2="226"></line>
+                    <line x1="160" y1="160" x2="45.68" y2="94"></line>
+                  </g>
+                  <polygon class="radar-area" id="radar-area" points=""></polygon>
+                  <g id="radar-points"></g>
+                </svg>
+
+                <div class="radar-label radar-label-top"><span>清洁力</span><strong id="label-0">9.0</strong></div>
+                <div class="radar-label radar-label-top-right"><span>续航</span><strong id="label-1">8.5</strong></div>
+                <div class="radar-label radar-label-bottom-right"><span>护龈</span><strong id="label-2">8.6</strong></div>
+                <div class="radar-label radar-label-bottom"><span>噪音</span><strong id="label-3">7.2</strong></div>
+                <div class="radar-label radar-label-bottom-left"><span>颜值</span><strong id="label-4">9.1</strong></div>
+                <div class="radar-label radar-label-top-left"><span>价格</span><strong id="label-5">6.8</strong></div>
+              </div>
+            </section>
+
+            <section class="compare-board">
+              <div class="board-head">
+                <div>
+                  <span class="panel-kicker">横向对比</span>
+                  <h3>六维单屏速看</h3>
+                </div>
+              </div>
+              <div class="dimension-table" id="dimension-table"></div>
+            </section>
+
+            <section class="summary-row" id="summary-row"></section>
+
+            <div class="caption-layer">
+              <strong>@智能牙刷研究所</strong>
+              <p>固定三款商品，滑动卡片或点品牌，直接看六维雷达图怎么变化。</p>
             </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="panel panel-detail" data-panel>
-        <div class="detail-layout">
-          <div class="detail-copy">
-            <span class="eyebrow">Product Notes</span>
-            <h2 id="detail-title">电动牙刷三选一的快速判断卡</h2>
-            <p id="detail-copy">
-              统一用六维雷达图衡量清洁力、续航、护龈、噪音、颜值和价格，并给出更像真实短视频导购页的购买建议。
-            </p>
           </div>
+        </section>
 
-          <div class="detail-grid">
-            <article class="detail-card">
-              <span>适合谁买</span>
-              <strong id="detail-fit">适合想在一屏内对比 3 支电动牙刷并快速决策的人。</strong>
-            </article>
-            <article class="detail-card">
-              <span>判断顺序</span>
-              <strong id="detail-rhythm">先看商品图和主参数，再看雷达评分，最后结合测评视频和商城页做决定。</strong>
-            </article>
-            <article class="detail-card">
-              <span>推荐亮点</span>
-              <strong id="detail-highlight">把真实商品图链接、测评视频入口和商城跳转都做进卡片，转化路径更完整。</strong>
-            </article>
-          </div>
-        </div>
-      </section>
-    </div>
+        <footer class="bottom-nav">
+          <button type="button">首页</button>
+          <button type="button">朋友</button>
+          <button class="plus-button" type="button" aria-label="发布"></button>
+          <button type="button">消息</button>
+          <button type="button">我</button>
+        </footer>
+      </div>
+    </section>
   </main>
 
   <script src="./script.js"></script>
