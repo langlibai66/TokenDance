@@ -12,27 +12,43 @@
 </head>
 <body>
   <main class="app-shell">
-    <section class="intro-panel">
-      <span class="eyebrow">9:16 Prototype</span>
-      <h1>短视频端 AI 攻略卡片</h1>
-      <p>
-        这一版改为接近短视频信息流的竖版展示方式，重点还原顶部频道栏、沉浸式背景、
-        攻略标题、玻璃态信息卡、底部按钮和导航区域。
-      </p>
-      <div class="intro-actions">
-        <button id="shuffle-btn" class="primary-btn" type="button">切换场景</button>
-        <a class="secondary-btn" href="./README.md">查看 README</a>
+    <section class="scroll-section hero-section">
+      <div class="intro-panel">
+        <span class="eyebrow">9:16 Prototype</span>
+        <h1>短视频端 AI 攻略卡片</h1>
+        <p>
+          这一版改为接近短视频信息流的竖版展示方式，重点还原顶部频道栏、沉浸式背景、
+          攻略标题、玻璃态信息卡、底部按钮和导航区域。
+        </p>
+        <div class="intro-actions">
+          <button id="shuffle-btn" class="primary-btn" type="button">切换场景</button>
+          <a class="secondary-btn" href="./README.md">查看 README</a>
+        </div>
+        <ul class="intro-metrics">
+          <li><strong>9:16</strong><span>手机端比例</span></li>
+          <li><strong>3</strong><span>攻略场景</span></li>
+          <li><strong>Feed</strong><span>信息流布局</span></li>
+        </ul>
       </div>
-      <ul class="intro-metrics">
-        <li><strong>9:16</strong><span>手机端比例</span></li>
-        <li><strong>3</strong><span>攻略场景</span></li>
-        <li><strong>Feed</strong><span>信息流布局</span></li>
-      </ul>
+      <div class="scroll-hint">
+        <span></span>
+        <p>向下滚动查看手机端原型</p>
+      </div>
     </section>
 
-    <section class="device-stage">
-      <div class="phone-frame">
-        <div class="phone-screen">
+    <section class="scroll-section showcase-section">
+      <div class="section-copy">
+        <span class="eyebrow">Vertical Showcase</span>
+        <h2>释放右侧空间，改为上下滚动浏览</h2>
+        <p>
+          现在页面不再左右分栏，而是用纵向滚动承载说明与展示。
+          中段完整留给 `9:16` 手机界面，让视觉焦点更集中。
+        </p>
+      </div>
+
+      <section class="device-stage">
+        <div class="phone-frame">
+          <div class="phone-screen">
           <div class="screen-background"></div>
           <div class="screen-overlay"></div>
 
@@ -151,13 +167,36 @@
           </footer>
 
           <div class="home-indicator"></div>
+          </div>
         </div>
-      </div>
 
-      <div class="scene-switcher">
-        <button class="scene-dot is-active" type="button" data-index="0" aria-label="场景 1"></button>
-        <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
-        <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
+        <div class="scene-switcher">
+          <button class="scene-dot is-active" type="button" data-index="0" aria-label="场景 1"></button>
+          <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
+          <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
+        </div>
+      </section>
+    </section>
+
+    <section class="scroll-section notes-section">
+      <div class="note-card">
+        <span class="eyebrow">Layout Update</span>
+        <h3>这次的浏览节奏</h3>
+        <p>第一屏讲项目定位，第二屏给完整手机展示，第三屏补充设计意图，避免手机原型被旁边说明挤压。</p>
+      </div>
+      <div class="note-grid">
+        <article>
+          <strong>更聚焦</strong>
+          <p>手机界面拥有完整居中空间，适合继续细化标题、卡片和内容层级。</p>
+        </article>
+        <article>
+          <strong>更适合展示</strong>
+          <p>更像作品集或落地页的浏览方式，用户自然向下滚动理解项目。</p>
+        </article>
+        <article>
+          <strong>更方便扩展</strong>
+          <p>后续可以继续往下加动效说明、设计稿、交互稿和更多场景。</p>
+        </article>
       </div>
     </section>
   </main>
