@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MomentCard | 9:16 短视频内容页</title>
+  <title>MomentCard | 电动牙刷导购短视频卡</title>
   <meta
     name="description"
-    content="MomentCard 9:16 竖版短视频内容页，呈现类似短视频信息流中的 AI 攻略卡片体验。"
+    content="MomentCard 9:16 竖版短视频导购页，用电动牙刷商品图、六维自动评分、测评视频和商城跳转模拟真实信息流卡片。"
   >
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -25,23 +25,23 @@
       <section class="panel panel-hero" data-panel>
         <div class="hero-card">
           <span class="eyebrow">MomentCard</span>
-          <h1>春日出行灵感卡片</h1>
+          <h1>电动牙刷种草卡片</h1>
           <p class="hero-text">
-            为周末出行人群提供更轻松的目的地灵感、路线信息和达人推荐，
-            让攻略内容像短视频一样更容易浏览和种草。
+            把真实商品图、六维自动评分、测评视频依据和商城跳转入口放进同一张 9:16 卡片，
+            让导购内容像短视频一样更容易浏览、比较和转化。
           </p>
           <div class="hero-actions">
             <button id="shuffle-btn" class="primary-btn" type="button">切换场景</button>
           </div>
           <ul class="hero-metrics">
             <li><strong>9:16</strong><span>竖版手机比例</span></li>
-            <li><strong>3</strong><span>攻略场景切换</span></li>
-            <li><strong>Feed</strong><span>内容流体验</span></li>
+            <li><strong>3</strong><span>牙刷商品切换</span></li>
+            <li><strong>Radar</strong><span>六维自动评分</span></li>
           </ul>
         </div>
         <div class="panel-tip">
           <span></span>
-          <p>山野路线、城市近郊与周末微度假灵感</p>
+          <p>商品图、测评视频、商城跳转与六维评分联动展示</p>
         </div>
       </section>
 
@@ -69,12 +69,12 @@
                     <span></span><span></span><span></span>
                   </button>
                   <div class="nav-tabs">
-                    <button type="button">团购</button>
-                    <button type="button">经验</button>
-                    <button type="button">北京</button>
-                    <button type="button">关注</button>
-                    <button type="button">商城</button>
-                    <button class="is-active" type="button">推荐</button>
+                    <button type="button" data-top-tab="group">团购</button>
+                    <button type="button" data-top-tab="tips">经验</button>
+                    <button type="button" data-top-tab="city">北京</button>
+                    <button type="button" data-top-tab="follow">关注</button>
+                    <button type="button" data-top-tab="shop">商城</button>
+                    <button class="is-active" type="button" data-top-tab="recommend">推荐</button>
                   </div>
                   <button class="search-button" type="button" aria-label="搜索"></button>
                 </nav>
@@ -86,51 +86,194 @@
                       <span class="hero-kicker" id="hero-kicker">春季徒步推荐</span>
                     </div>
                     <h3 id="hero-title">莫干山清明越野跑攻略</h3>
+                    <div class="topic-row" id="topic-row"></div>
                   </div>
 
                   <article class="glass-card">
                     <div class="stat-grid">
                       <div>
-                        <span>目的地</span>
-                        <strong id="meta-destination">湖州·莫干山</strong>
+                        <span id="meta-label-1">品牌</span>
+                        <strong id="meta-destination">Laifen</strong>
                       </div>
                       <div>
-                        <span>天数</span>
-                        <strong id="meta-days">2天</strong>
+                        <span id="meta-label-2">参考价</span>
+                        <strong id="meta-days">799 元</strong>
                       </div>
                       <div>
-                        <span>气温预计</span>
-                        <strong id="meta-weather">15-25°C</strong>
+                        <span id="meta-label-3">续航</span>
+                        <strong id="meta-weather">30 天</strong>
                       </div>
                       <div>
-                        <span>路线风景</span>
-                        <strong id="meta-scenery">植被丰茂</strong>
+                        <span id="meta-label-4">核心结构</span>
+                        <strong id="meta-scenery">60° 摆动 + 声波</strong>
                       </div>
                     </div>
 
-                    <div class="card-story">
-                      <p id="card-copy">
-                        正值春末夏初，是跑山的好季节。去莫干山吧，感受经典赛道与山野风光。
-                      </p>
-                      <div class="route-visual">
-                        <span class="route-node route-node-a"></span>
-                        <span class="route-node route-node-b"></span>
-                        <span class="route-node route-node-c"></span>
-                        <span class="route-node route-node-d"></span>
-                        <span class="route-label route-label-a" id="route-day-1">Day 1</span>
-                        <span class="route-label route-label-b" id="route-day-2">Day 2</span>
-                        <svg viewBox="0 0 120 90" preserveAspectRatio="none" aria-hidden="true">
-                          <path d="M12 18 C34 14, 44 42, 66 34 S102 38, 104 56" />
-                          <path d="M34 62 C52 50, 68 54, 82 72 S98 74, 104 82" />
-                        </svg>
+                    <div class="product-hero">
+                      <button class="product-image-wrap" id="product-image-link" type="button" aria-label="打开商品链接">
+                        <img
+                          id="product-image"
+                          src="https://ca.laifentech.com/cdn/shop/files/1080_a3cc2b50-3c30-4418-b9be-d902577a120e.jpg?v=1741657822"
+                          alt="Laifen Wave 商品图"
+                        />
+                      </button>
+
+                      <div class="product-hero-copy">
+                        <span class="product-badge" id="product-badge">官方商品图</span>
+                        <strong class="product-price" id="product-price">799 元</strong>
+                        <p class="product-summary" id="product-summary">
+                          主打 60° 摆动刷感和细软刷毛，适合想从普通声波牙刷升级到更高完成度体验的人。
+                        </p>
+                        <div class="spec-chip-row" id="spec-chip-row"></div>
                       </div>
+                    </div>
+
+                    <div class="shop-mini-row">
+                      <a
+                        class="shop-link-button"
+                        id="shop-link"
+                        href="https://ca.laifentech.com/products/laifen-wave-electric-toothbrush"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        去商城页
+                      </a>
+                      <button class="shop-mini-button" id="video-link-btn" type="button">打开测评</button>
+                      <button class="shop-mini-button" id="replace-image-btn" type="button">替换商品图</button>
+                      <button class="shop-mini-button is-subtle" id="reset-image-btn" type="button">重置图片</button>
+                    </div>
+
+                    <div class="shop-status" id="shop-status">已接入真实商品图链接，可直接替换为任意商品图 URL。</div>
+
+                    <section class="radar-block">
+                      <div class="radar-visual">
+                        <div class="radar-head">
+                          <span class="radar-chip" id="radar-chip">自动评分</span>
+                          <strong id="radar-summary">六维评分</strong>
+                        </div>
+                        <div class="radar-stage">
+                          <div class="radar-score">
+                            <span id="radar-score-value">8.7</span>
+                            <small id="radar-score-label">自动推荐值</small>
+                          </div>
+                          <svg class="radar-chart" viewBox="0 0 180 180" aria-hidden="true">
+                            <g class="radar-grid">
+                              <polygon points="90,26 145.4,58 145.4,122 90,154 34.6,122 34.6,58"></polygon>
+                              <polygon points="90,39 134.1,64.5 134.1,115.5 90,141 45.9,115.5 45.9,64.5"></polygon>
+                              <polygon points="90,52 122.9,71 122.9,109 90,128 57.1,109 57.1,71"></polygon>
+                              <polygon points="90,65 111.7,77.5 111.7,102.5 90,115 68.3,102.5 68.3,77.5"></polygon>
+                              <polygon points="90,78 100.4,84 100.4,96 90,102 79.6,96 79.6,84"></polygon>
+                              <polygon points="90,91 90,91 90,91 90,91 90,91 90,91"></polygon>
+                              <line x1="90" y1="90" x2="90" y2="18"></line>
+                              <line x1="90" y1="90" x2="152.4" y2="54"></line>
+                              <line x1="90" y1="90" x2="152.4" y2="126"></line>
+                              <line x1="90" y1="90" x2="90" y2="162"></line>
+                              <line x1="90" y1="90" x2="27.6" y2="126"></line>
+                              <line x1="90" y1="90" x2="27.6" y2="54"></line>
+                            </g>
+                            <polygon class="radar-area" id="radar-area" points=""></polygon>
+                            <g class="radar-points" id="radar-points"></g>
+                          </svg>
+                          <div class="radar-label radar-label-top">
+                            <span id="radar-label-1">清洁力</span>
+                            <b id="radar-value-1">9.0</b>
+                          </div>
+                          <div class="radar-label radar-label-top-right">
+                            <span id="radar-label-2">续航</span>
+                            <b id="radar-value-2">8.5</b>
+                          </div>
+                          <div class="radar-label radar-label-bottom-right">
+                            <span id="radar-label-3">护龈</span>
+                            <b id="radar-value-3">8.6</b>
+                          </div>
+                          <div class="radar-label radar-label-bottom">
+                            <span id="radar-label-4">噪音</span>
+                            <b id="radar-value-4">7.8</b>
+                          </div>
+                          <div class="radar-label radar-label-bottom-left">
+                            <span id="radar-label-5">颜值</span>
+                            <b id="radar-value-5">9.2</b>
+                          </div>
+                          <div class="radar-label radar-label-top-left">
+                            <span id="radar-label-6">价格</span>
+                            <b id="radar-value-6">7.9</b>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="score-reason-list" id="score-reason-list"></div>
+                      <p class="score-footnote" id="score-footnote">
+                        清洁力看动力结构与振动效率，续航看充电周期，护龈看压力反馈与柔和模式，噪音看静音表现，颜值看材质与屏显，价格看当前档位。
+                      </p>
+                    </section>
+
+                    <div class="card-tabs" role="tablist" aria-label="卡片内容切换">
+                      <button class="card-tab is-active" type="button" data-card-tab="overview">亮点</button>
+                      <button class="card-tab" type="button" data-card-tab="evidence">依据</button>
+                      <button class="card-tab" type="button" data-card-tab="advice">建议</button>
+                    </div>
+
+                    <div class="card-panels">
+                      <section class="card-panel is-active" data-card-panel="overview">
+                        <div class="card-story">
+                          <p id="card-copy">
+                            用一条商品卡同时看主图、核心参数、测评依据和六维评分，更适合在短视频场景里快速完成判断。
+                          </p>
+                          <div class="metric-strip" id="metric-strip"></div>
+                          <div class="highlight-list" id="highlight-list"></div>
+                          <div class="highlight-detail" id="highlight-detail"></div>
+                        </div>
+                      </section>
+
+                      <section class="card-panel" data-card-panel="evidence">
+                        <div class="evidence-list" id="evidence-list"></div>
+                      </section>
+
+                      <section class="card-panel" data-card-panel="advice">
+                        <div class="advice-spotlight">
+                          <span class="advice-chip">购买建议</span>
+                          <h4 id="card-advice-title">先看测评，再决定是否跳转商城</h4>
+                          <p id="card-advice-copy">
+                            建议先通过测评视频确认刷感、噪音和护龈体验，再结合价格与续航判断是否适合自己的预算与使用习惯。
+                          </p>
+                        </div>
+
+                        <div class="advice-metrics">
+                          <div>
+                            <span>适合人群</span>
+                            <strong id="card-advice-fit">首次升级、重视体验</strong>
+                          </div>
+                          <div>
+                            <span>入手提醒</span>
+                            <strong id="card-advice-rhythm">先看刷头成本，再看主机功能</strong>
+                          </div>
+                        </div>
+
+                        <section class="creator-section">
+                          <div class="section-label" id="creator-section-label">测评视频依据</div>
+                          <div class="creator-list" id="creator-list"></div>
+                          <div class="creator-focus" id="creator-focus">
+                            <strong id="creator-focus-title">点击下方视频卡查看摘要</strong>
+                            <p id="creator-focus-copy">这里会显示当前选中测评视频的核心结论和观看建议。</p>
+                            <button class="focus-link-button" id="creator-focus-link" type="button">打开当前测评</button>
+                          </div>
+                        </section>
+                      </section>
                     </div>
                   </article>
+                </section>
 
-                  <section class="creator-section">
-                    <div class="section-label">运动与旅行博主推荐</div>
-                    <div class="creator-list" id="creator-list"></div>
-                  </section>
+                <section class="feed-meta">
+                  <div class="feed-author-row">
+                    <strong id="feed-author">@AI推荐官</strong>
+                    <span id="feed-time">2 小时前</span>
+                  </div>
+                  <p class="feed-caption" id="feed-caption">
+                    用 60 秒看懂一支电动牙刷值不值得买，适合想快速决策的人。
+                  </p>
+                  <div class="feed-music">
+                    <span class="music-dot"></span>
+                    <p id="feed-music">原声 · AI推荐官</p>
+                  </div>
                 </section>
 
                 <div class="feed-progress">
@@ -140,18 +283,18 @@
                 </div>
 
                 <div class="cta-row">
-                  <button type="button" class="ghost-cta">不感兴趣</button>
-                  <button type="button" class="primary-cta">查看详情</button>
+                  <button type="button" class="ghost-cta">查看评分</button>
+                  <button type="button" class="primary-cta">去商城</button>
                 </div>
 
                 <div class="continue-tip">上滑继续看视频</div>
 
                 <footer class="bottom-tabbar">
-                  <button class="is-current" type="button">首页</button>
-                  <button type="button">朋友</button>
+                  <button class="is-current" type="button" data-bottom-tab="home">首页</button>
+                  <button type="button" data-bottom-tab="friends">朋友</button>
                   <button class="tab-plus" type="button" aria-label="发布">+</button>
-                  <button type="button">消息</button>
-                  <button type="button">我</button>
+                  <button type="button" data-bottom-tab="message">消息</button>
+                  <button type="button" data-bottom-tab="profile">我</button>
                 </footer>
 
                 <div class="home-indicator"></div>
@@ -165,19 +308,19 @@
               <button class="scene-dot" type="button" data-index="1" aria-label="场景 2"></button>
               <button class="scene-dot" type="button" data-index="2" aria-label="场景 3"></button>
             </div>
-            <p class="device-caption" id="scene-caption">春季山野路线、天气信息与达人推荐的组合内容。</p>
+            <p class="device-caption" id="scene-caption">三支电动牙刷全部按同一套六维规则自动打分，并补齐商城跳转和测评视频依据。</p>
             <div class="side-note-grid">
               <article class="side-note-card">
-                <span>目的地</span>
-                <strong id="side-destination">湖州·莫干山</strong>
+                <span id="side-label-1">品牌</span>
+                <strong id="side-destination">Laifen</strong>
               </article>
               <article class="side-note-card">
-                <span>行程</span>
-                <strong id="side-days">2天</strong>
+                <span id="side-label-2">价位</span>
+                <strong id="side-days">799 元</strong>
               </article>
               <article class="side-note-card">
-                <span>亮点</span>
-                <strong id="side-highlight">山野路线、天气信息与达人推荐被收在同一条内容流里。</strong>
+                <span>推荐理由</span>
+                <strong id="side-highlight">商品图、测评视频、商城页和自动评分都收进一条抖音式卡片里。</strong>
               </article>
             </div>
           </aside>
@@ -187,25 +330,25 @@
       <section class="panel panel-detail" data-panel>
         <div class="detail-layout">
           <div class="detail-copy">
-            <span class="eyebrow">Travel Notes</span>
-            <h2 id="detail-title">春日山野的轻量攻略</h2>
+            <span class="eyebrow">Product Notes</span>
+            <h2 id="detail-title">电动牙刷三选一的快速判断卡</h2>
             <p id="detail-copy">
-              结合目的地亮点、路线节奏和达人体验，把一次出行灵感浓缩成更容易浏览的一张卡片。
+              统一用六维雷达图衡量清洁力、续航、护龈、噪音、颜值和价格，并给出更像真实短视频导购页的购买建议。
             </p>
           </div>
 
           <div class="detail-grid">
             <article class="detail-card">
-              <span>适合谁看</span>
-              <strong id="detail-fit">适合周末计划出行、想快速获取路线灵感的人。</strong>
+              <span>适合谁买</span>
+              <strong id="detail-fit">适合想在一屏内对比 3 支电动牙刷并快速决策的人。</strong>
             </article>
             <article class="detail-card">
-              <span>当前节奏</span>
-              <strong id="detail-rhythm">信息先收拢，再把完整手机界面单独放大展示。</strong>
+              <span>判断顺序</span>
+              <strong id="detail-rhythm">先看商品图和主参数，再看雷达评分，最后结合测评视频和商城页做决定。</strong>
             </article>
             <article class="detail-card">
               <span>推荐亮点</span>
-              <strong id="detail-highlight">用 AI 攻略卡片承接短视频内容，强化可看性和转化感。</strong>
+              <strong id="detail-highlight">把真实商品图链接、测评视频入口和商城跳转都做进卡片，转化路径更完整。</strong>
             </article>
           </div>
         </div>
