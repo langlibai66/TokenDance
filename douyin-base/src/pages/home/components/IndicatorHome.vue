@@ -5,25 +5,11 @@
       <Icon
         icon="tabler:menu-deep"
         class="search"
-        @click="$emit('showSlidebar')"
         style="transform: rotateY(180deg)"
       />
       <div class="tab-ctn">
         <div class="tabs" ref="tabs">
-          <div class="tab" :class="{ active: index === 0 }" @click.stop="change(0)">
-            <span>热点</span>
-          </div>
-          <div class="tab" :class="{ active: index === 1 }" @click.stop="change(1)">
-            <span>长视频</span>
-          </div>
-          <div class="tab" :class="{ active: index === 2 }" @click.stop="change(2)">
-            <span>关注</span>
-            <img src="../../../assets/img/icon/live.webp" class="tab2-img" />
-          </div>
-          <div class="tab" :class="{ active: index === 3 }" @click.stop="change(3)">
-            <span>经验</span>
-          </div>
-          <div class="tab" :class="{ active: index === 4 }" @click.stop="change(4)">
+          <div class="tab active" @click.stop="change(0)">
             <span>推荐</span>
           </div>
         </div>
@@ -33,7 +19,6 @@
         v-hide="loading"
         icon="ion:search"
         class="search"
-        @click="$router.push('/home/search')"
       />
     </div>
     <Loading :style="loadingStyle" class="loading" style="width: 40rem" :is-full-screen="false" />
@@ -149,7 +134,6 @@ export default {
     bus.off(this.name + '-moveY')
     bus.off(this.name + '-end', this.end)
   },
-
   methods: {
     change(index) {
       this.$emit('update:index', index)
@@ -160,6 +144,7 @@ export default {
       let tabs = this.$refs.tabs
       this.indicatorRef = this.$refs.indicator
       let indicatorWidth = _css(this.indicatorRef, 'width')
+      this.lefts = []
       for (let i = 0; i < tabs.children.length; i++) {
         let item = tabs.children[i]
         let tabWidth = _css(item, 'width')
@@ -169,22 +154,22 @@ export default {
             (tabWidth * 0.5 - indicatorWidth / 2)
         )
       }
-      this.indicatorSpace = this.lefts[1] - this.lefts[0]
+      this.indicatorSpace = this.lefts.length > 1 ? this.lefts[1] - this.lefts[0] : 1
       _css(this.indicatorRef, 'transition-duration', `300ms`)
-      _css(this.indicatorRef, 'left', this.lefts[this.index] + 'px')
+      _css(this.indicatorRef, 'left', this.lefts[0] + 'px')
     },
     move(e) {
       _css(this.indicatorRef, 'transition-duration', `0ms`)
       _css(
         this.indicatorRef,
         'left',
-        this.lefts[this.index] - e / (this.baseStore.bodyWidth / this.indicatorSpace) + 'px'
+        this.lefts[0] - e / (this.baseStore.bodyWidth / this.indicatorSpace) + 'px'
       )
     },
     end(index) {
       this.moveY = 0
       _css(this.indicatorRef, 'transition-duration', `300ms`)
-      _css(this.indicatorRef, 'left', this.lefts[index] + 'px')
+      _css(this.indicatorRef, 'left', this.lefts[0] + 'px')
       setTimeout(() => {
         _css(this.indicatorRef, 'transition-duration', `0ms`)
       }, 300)
@@ -242,7 +227,7 @@ export default {
 
       .tabs {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
 
         .tab {
           transition: color 0.3s;
@@ -275,14 +260,14 @@ export default {
       }
 
       .indicator {
-        //transition: left .3s;
         position: absolute;
         bottom: -6rem;
         height: 2.6rem;
         width: 26rem;
-        //width: calc(100% / 5);
         background: #fff;
         border-radius: 5rem;
+        opacity: 0;
+        pointer-events: none;
       }
     }
 

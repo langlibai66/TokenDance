@@ -3,7 +3,7 @@
     <SlideHorizontal
       name="first"
       v-model:index="state.baseIndex"
-      :can-move="state.canMove && !(state.baseIndex === 1 && state.navIndex === 4)"
+      :can-move="state.canMove && !(state.baseIndex === 1 && state.navIndex === 0)"
     >
       <SlideItem class="sidebar">
         <div class="header">
@@ -114,17 +114,7 @@
           :change-active-index-use-anim="false"
           v-model:index="state.navIndex"
         >
-          <!--          <SlideItem></SlideItem>-->
-          <Slide0 :active="state.navIndex === 0 && state.baseIndex === 1" />
-          <SlideItem>
-            <LongVideo :active="state.navIndex === 1 && state.baseIndex === 1" />
-          </SlideItem>
-          <!--          <SlideItem></SlideItem>-->
-          <Slide2 :active="state.navIndex === 2 && state.baseIndex === 1" />
-          <SlideItem>
-            <Community :active="state.navIndex === 3 && state.baseIndex === 1" />
-          </SlideItem>
-          <Slide4 :active="state.navIndex === 4 && state.baseIndex === 1" />
+          <Slide4 :active="state.navIndex === 0 && state.baseIndex === 1" />
         </SlideHorizontal>
 
         <BaseFooter v-bind:init-tab="1" />
@@ -234,13 +224,9 @@ import ConfirmDialog from '../../components/dialog/ConfirmDialog.vue'
 import FollowSetting2 from '@/pages/home/components/FollowSetting2.vue'
 import ShareToFriend from '@/pages/home/components/ShareToFriend.vue'
 import UserPanel from '@/components/UserPanel.vue'
-import Community from '@/pages/home/slide/Community.vue'
-import Slide0 from '@/pages/home/slide/Slide0.vue'
-import Slide2 from '@/pages/home/slide/Slide2.vue'
 import Slide4 from '@/pages/home/slide/Slide4.vue'
 import { DefaultUser } from '@/utils/const_var'
 import { _no } from '@/utils'
-import LongVideo from '@/pages/home/slide/LongVideo.vue'
 import { useBaseStore } from '@/store/pinia'
 import BaseMask from '@/components/BaseMask.vue'
 
@@ -252,7 +238,7 @@ const isMobile = ref(/Mobi|Android|iPhone/i.test(navigator.userAgent))
 const state = reactive({
   active: true,
   baseIndex: 1,
-  navIndex: 4,
+  navIndex: 0,
   itemIndex: 0,
   test: '',
   recommendList: [],

@@ -37,7 +37,7 @@ const state = reactive({
         </div>
       </div>
       <div class="live" v-if="props.isLive">直播中</div>
-      <div class="name mb1r f18 fb" @click.stop="$emit('goUserInfo')">
+      <div class="name mb1r f18 fb">
         @{{ item?.author?.nickname }}
       </div>
       <div class="description">

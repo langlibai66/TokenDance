@@ -112,9 +112,6 @@ const axisValueLabels = Array.from({ length: 6 }, (_, index) => document.getElem
 let currentIndex = 0;
 let currentRadarValues = new Array(6).fill(0);
 let radarFrame = null;
-let dragStartX = 0;
-let dragCurrentX = 0;
-let dragActive = false;
 
 function averageScore(values) {
   return (values.reduce((sum, value) => sum + value, 0) / values.length).toFixed(1);
@@ -227,10 +224,6 @@ function renderProduct(index) {
   const product = products[currentIndex];
   const overall = averageScore(product.axes);
 
-  productCard.style.transform = "translateX(0px) rotate(0deg)";
-  productCard.style.opacity = "1";
-  productCard.classList.remove("is-dragging");
-
   productVisual.style.setProperty("--product-main", product.colors.main);
   productVisual.style.setProperty("--product-accent", product.colors.accent);
   productVisual.style.setProperty("--product-deep", product.colors.deep);
@@ -261,54 +254,6 @@ function changeProduct(step) {
   renderProduct(currentIndex + step);
 }
 
-function resetDrag() {
-  dragActive = false;
-  productCard.classList.remove("is-dragging");
-  productCard.style.transform = "translateX(0px) rotate(0deg)";
-  productCard.style.opacity = "1";
-}
-
-function onPointerDown(event) {
-  dragActive = true;
-  dragStartX = event.clientX;
-  dragCurrentX = event.clientX;
-  productCard.classList.add("is-dragging");
-}
-
-function onPointerMove(event) {
-  if (!dragActive) {
-    return;
-  }
-
-  dragCurrentX = event.clientX;
-  const deltaX = dragCurrentX - dragStartX;
-  const rotate = deltaX / 18;
-  const opacity = Math.max(0.72, 1 - Math.abs(deltaX) / 320);
-  productCard.style.transform = `translateX(${deltaX}px) rotate(${rotate}deg)`;
-  productCard.style.opacity = opacity.toString();
-}
-
-function onPointerUp() {
-  if (!dragActive) {
-    return;
-  }
-
-  const deltaX = dragCurrentX - dragStartX;
-  if (deltaX > 70) {
-    resetDrag();
-    changeProduct(-1);
-    return;
-  }
-
-  if (deltaX < -70) {
-    resetDrag();
-    changeProduct(1);
-    return;
-  }
-
-  resetDrag();
-}
-
 prevBtn.addEventListener("click", () => changeProduct(-1));
 nextBtn.addEventListener("click", () => changeProduct(1));
 
@@ -327,11 +272,6 @@ summaryRow.addEventListener("click", (event) => {
   }
   renderProduct(Number(card.dataset.summaryIndex));
 });
-
-productCard.addEventListener("pointerdown", onPointerDown);
-window.addEventListener("pointermove", onPointerMove);
-window.addEventListener("pointerup", onPointerUp);
-window.addEventListener("pointercancel", onPointerUp);
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") {

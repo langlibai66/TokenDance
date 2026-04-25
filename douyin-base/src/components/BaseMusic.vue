@@ -3,7 +3,6 @@
     <div
       class="mute-icon"
       :class="showMutedNotice && 'notice'"
-      v-click="() => bus.emit(EVENT_KEY.REMOVE_MUTED)"
       v-if="isMuted"
     >
       <div class="wrap">
@@ -15,13 +14,6 @@
       class="music"
       :src="item.music?.cover_thumb.url_list[0]"
       :style="style"
-      v-click="
-        () =>
-          bus.emit(EVENT_KEY.NAV, {
-            path: '/home/music',
-            query: { id: item.aweme_id }
-          })
-      "
     />
   </div>
 </template>
@@ -29,12 +21,10 @@
 import { inject, onMounted } from 'vue'
 import bus, { EVENT_KEY } from '@/utils/bus'
 import { Icon } from '@iconify/vue'
-import { useClick } from '@/utils/hooks/useClick'
 
 const isPlaying = inject<boolean>('isPlaying')
 const isMuted = inject('isMuted')
 const item = inject<any>('item')
-const vClick = useClick()
 let showMutedNotice = $ref(window.showMutedNotice)
 
 const style = $computed(() => {

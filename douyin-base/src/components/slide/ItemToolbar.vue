@@ -23,7 +23,7 @@ const props = defineProps({
 
 const position = inject<any>('position')
 
-const emit = defineEmits(['update:item', 'goUserInfo', 'showComments', 'showShare', 'goMusic'])
+const emit = defineEmits(['update:item'])
 
 function _updateItem(props, key, val) {
   const old = cloneDeep(props.item)
@@ -58,17 +58,6 @@ function collected() {
   }
 }
 
-function attention(e) {
-  e.currentTarget.classList.add('attention')
-  setTimeout(() => {
-    _updateItem(props, 'isAttention', true)
-  }, 1000)
-}
-
-function showComments() {
-  bus.emit(EVENT_KEY.OPEN_COMMENTS, props.item.aweme_id)
-}
-
 const vClick = useClick()
 </script>
 
@@ -79,10 +68,9 @@ const vClick = useClick()
         class="avatar"
         :src="item.author?.avatar_168x168?.url_list?.[0]"
         alt=""
-        v-click="() => bus.emit(EVENT_KEY.GO_USERINFO)"
       />
       <transition name="fade">
-        <div v-if="!item.isAttention" v-click="attention" class="options">
+        <div v-if="!item.isAttention" class="options">
           <img class="no" src="../../assets/img/icon/add-light.png" alt="" />
           <img class="yes" src="../../assets/img/icon/ok-red.png" alt="" />
         </div>
@@ -95,7 +83,7 @@ const vClick = useClick()
       </div>
       <span>{{ _formatNumber(item.statistics.digg_count) }}</span>
     </div>
-    <div class="message mb2r" v-click="showComments">
+    <div class="message mb2r">
       <Icon icon="mage:message-dots-round-fill" class="icon" style="color: white" />
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
@@ -110,11 +98,11 @@ const vClick = useClick()
       <Icon v-else icon="ic:round-star" class="icon" style="color: white" />
       <span>{{ _formatNumber(item.statistics.collect_count) }}</span>
     </div>
-    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+    <div v-if="!props.isMy" class="share mb2r">
       <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />
       <span>{{ _formatNumber(item.statistics.share_count) }}</span>
     </div>
-    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+    <div v-else class="share mb2r">
       <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />
     </div>
     <!--    <BaseMusic-->
