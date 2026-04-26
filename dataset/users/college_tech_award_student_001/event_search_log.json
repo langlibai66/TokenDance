@@ -1,0 +1,1407 @@
+{
+  "user_id": "college_tech_award_student_001",
+  "timezone": "Asia/Shanghai",
+  "log_version": "2026-04-26.v2",
+  "sessions": [
+    {
+      "session_id": "session_01_career_path",
+      "trigger_event": {
+        "event_type": "platform_heat_rise",
+        "event_name": "平台内“低年级实习 / 考研路线”内容集中升温",
+        "event_time": "2026-04-18T21:05:00+08:00",
+        "why_now": "计算机职业路线内容在平台内持续出现，用户被激发出对低年级阶段应该优先准备什么的即时焦虑。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_dorm",
+        "time_slot": "late_evening",
+        "device": "iphone",
+        "mood": "职业路径焦虑",
+        "urgency": "medium"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "计算机大一大二先准备考研还是先找实习",
+          "intent_label": "career_direction",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "计算机低年级实习准备时间线",
+          "intent_label": "timeline_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "低年级项目经历不多怎么准备实习",
+          "intent_label": "execution_detail",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "career_path_v001",
+          "title": "计算机低年级别急着卷大厂，先把这三件事做完",
+          "topic_tags": [
+            "计算机",
+            "低年级",
+            "职业规划"
+          ],
+          "creator_type": "student_blogger",
+          "content_angle": "按学期拆解低年级到大三的准备路线",
+          "duration_sec": 92,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 84,
+            "completion_rate": 0.91,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "career_path_v002",
+          "title": "考研还是实习？计算机学生别被一句话带偏",
+          "topic_tags": [
+            "考研",
+            "实习",
+            "路线选择"
+          ],
+          "creator_type": "career_coach",
+          "content_angle": "比较考研优先与实习优先的适用人群",
+          "duration_sec": 118,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 76,
+            "completion_rate": 0.64,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "career_path_v003",
+          "title": "低年级怎么补项目经历，才能不在实习季手忙脚乱",
+          "topic_tags": [
+            "项目经历",
+            "实习",
+            "计算机"
+          ],
+          "creator_type": "intern_student",
+          "content_angle": "给出低门槛项目和简历填充方案",
+          "duration_sec": 86,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 81,
+            "completion_rate": 0.94,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": true,
+            "skip_reason": "",
+            "followup_action": "opened_creator_profile"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "career_path_v004",
+          "title": "普通二本也能拿大厂实习，我当年就是这么逆袭的",
+          "topic_tags": [
+            "逆袭",
+            "大厂实习",
+            "经验分享"
+          ],
+          "creator_type": "motivation_creator",
+          "content_angle": "个人励志经历为主，缺少具体路径",
+          "duration_sec": 75,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 6,
+            "completion_rate": 0.08,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "过于鸡汤",
+            "followup_action": "none"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "career_path_v005",
+          "title": "考研党和就业党最容易在大二踩的四个坑",
+          "topic_tags": [
+            "考研党",
+            "就业党",
+            "避坑"
+          ],
+          "creator_type": "graduate_student",
+          "content_angle": "聚焦错误投入与时间分配",
+          "duration_sec": 97,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 61,
+            "completion_rate": 0.63,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "checked_comments"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "career_path_v006",
+          "title": "只要够努力，路线根本不重要",
+          "topic_tags": [
+            "努力",
+            "成长",
+            "观点"
+          ],
+          "creator_type": "general_creator",
+          "content_angle": "价值判断多，缺少执行方案",
+          "duration_sec": 54,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 4,
+            "completion_rate": 0.07,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "没有可执行信息",
+            "followup_action": "none"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对按学期拆解和低门槛项目建议停留最长，并有收藏行为。",
+        "avoided_signal": "对励志和无时间线内容快速跳出。",
+        "next_query": "低年级项目经历不多怎么准备实习",
+        "session_outcome": "用户更认可“先补项目与时间线，再决定考研或实习优先级”的并行准备路径。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "按学期拆解",
+          "低年级可执行建议",
+          "项目经历补足"
+        ],
+        "rejected_angles": [
+          "纯鸡汤",
+          "只讲结果不讲路径"
+        ],
+        "confidence_delta": 0.18
+      }
+    },
+    {
+      "session_id": "session_02_class_conflict_delegate",
+      "trigger_event": {
+        "event_type": "platform_heat_rise",
+        "event_name": "平台内“暑期实习 offer / 面经 / 转正”内容显著增多",
+        "event_time": "2026-05-27T22:10:00+08:00",
+        "why_now": "暑期实习热点在平台内形成持续刺激，用户开始担心低年级冲实习时课程考勤如何兼顾。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_dorm",
+        "time_slot": "night",
+        "device": "iphone",
+        "mood": "机会焦虑",
+        "urgency": "high"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "暑期实习和课程考勤冲突怎么办",
+          "intent_label": "conflict_resolution",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "低年级实习 上课冲突怎么处理",
+          "intent_label": "campus_specific_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "大学考勤冲突 请假还是找人代签到",
+          "intent_label": "risk_tradeoff",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "class_conflict_v001",
+          "title": "低年级冲暑期实习，课程冲突先做这三步",
+          "topic_tags": [
+            "暑期实习",
+            "课程冲突",
+            "大学生"
+          ],
+          "creator_type": "senior_student",
+          "content_angle": "优先请假、沟通、调课，再评估代签风险",
+          "duration_sec": 78,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 74,
+            "completion_rate": 0.95,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": true,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "class_conflict_v002",
+          "title": "实习请假邮件怎么写，辅导员和老师更容易接受",
+          "topic_tags": [
+            "请假邮件",
+            "辅导员",
+            "实习"
+          ],
+          "creator_type": "campus_creator",
+          "content_angle": "给出沟通顺序和请假模板",
+          "duration_sec": 66,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 61,
+            "completion_rate": 0.92,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "copied_notes"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "class_conflict_v003",
+          "title": "代签到翻车实录：你以为省事，其实风险更大",
+          "topic_tags": [
+            "代签到",
+            "翻车",
+            "风险"
+          ],
+          "creator_type": "student_blogger",
+          "content_angle": "通过反例强调代签风险",
+          "duration_sec": 71,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 53,
+            "completion_rate": 0.75,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "class_conflict_v004",
+          "title": "考勤有啥难的，校园群随便找个人帮忙就行",
+          "topic_tags": [
+            "校园群",
+            "考勤",
+            "代签"
+          ],
+          "creator_type": "anonymous_account",
+          "content_angle": "鼓励钻空子，没有风险提示",
+          "duration_sec": 49,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 3,
+            "completion_rate": 0.06,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "风险过高",
+            "followup_action": "none"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "class_conflict_v005",
+          "title": "辅导员视角：什么样的实习请假最容易批",
+          "topic_tags": [
+            "辅导员",
+            "实习请假",
+            "校园规则"
+          ],
+          "creator_type": "teacher_creator",
+          "content_angle": "从制度和态度解释请假成功率",
+          "duration_sec": 95,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 69,
+            "completion_rate": 0.73,
+            "liked": true,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "checked_comments"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "class_conflict_v006",
+          "title": "校外短期实习一定比上课重要吗？先看这份优先级清单",
+          "topic_tags": [
+            "优先级",
+            "短期实习",
+            "课程"
+          ],
+          "creator_type": "career_coach",
+          "content_angle": "帮助用户判断哪些机会值得为之调整课业",
+          "duration_sec": 88,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 56,
+            "completion_rate": 0.64,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对低风险兼顾方案、请假模板和制度解释有明显停留与收藏。",
+        "avoided_signal": "对鼓励代签、无风险提示的视频直接跳过。",
+        "next_query": "大学考勤冲突 请假还是找人代签到",
+        "session_outcome": "用户优先接受“请假沟通 + 调整安排”的正规方案，并把代签到视为最后且高风险的备选。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "低风险方案",
+          "沟通模板",
+          "制度视角"
+        ],
+        "rejected_angles": [
+          "灰产代签",
+          "无成本捷径"
+        ],
+        "confidence_delta": 0.14
+      }
+    },
+    {
+      "session_id": "session_03_scholarship_competition",
+      "trigger_event": {
+        "event_type": "platform_heat_rise",
+        "event_name": "平台内“奖学金答辩 / 竞赛经历包装”内容升温",
+        "event_time": "2026-09-24T19:40:00+08:00",
+        "why_now": "秋季奖学金评定季到来，平台内大量相关内容促使用户快速搜索如何把竞赛和项目写得更有说服力。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_library",
+        "time_slot": "evening",
+        "device": "iphone",
+        "mood": "准备材料焦虑",
+        "urgency": "high"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "技术奖学金 竞赛经历 项目经历 怎么写",
+          "intent_label": "material_packaging",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "奖学金答辩 项目经历 句式模板",
+          "intent_label": "template_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "蓝桥杯 项目包装 简历奖项写法",
+          "intent_label": "competition_specific_refinement",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "scholarship_v001",
+          "title": "技术奖学金材料别堆流水账，评委其实只看这三层",
+          "topic_tags": [
+            "技术奖学金",
+            "评委视角",
+            "材料"
+          ],
+          "creator_type": "campus_mentor",
+          "content_angle": "从评审逻辑拆解材料结构",
+          "duration_sec": 104,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 96,
+            "completion_rate": 0.92,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": true,
+            "skip_reason": "",
+            "followup_action": "copied_notes"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "scholarship_v002",
+          "title": "竞赛经历怎么写才不像报菜名，这个模板直接套",
+          "topic_tags": [
+            "竞赛经历",
+            "模板",
+            "简历"
+          ],
+          "creator_type": "student_blogger",
+          "content_angle": "提供可直接复用的三段式模板",
+          "duration_sec": 72,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 69,
+            "completion_rate": 0.96,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "scholarship_v003",
+          "title": "项目经历不会写？把技术点翻译成成果点就够了",
+          "topic_tags": [
+            "项目经历",
+            "成果表达",
+            "技术表达"
+          ],
+          "creator_type": "career_creator",
+          "content_angle": "强调成果和影响，不只是技术堆砌",
+          "duration_sec": 81,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 66,
+            "completion_rate": 0.81,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "scholarship_v004",
+          "title": "我拿了很多奖，给大家展示一下证书墙",
+          "topic_tags": [
+            "奖项展示",
+            "证书",
+            "校园"
+          ],
+          "creator_type": "showcase_creator",
+          "content_angle": "展示为主，缺少写法方法",
+          "duration_sec": 63,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 5,
+            "completion_rate": 0.08,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "没有方法论",
+            "followup_action": "none"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "scholarship_v005",
+          "title": "奖学金答辩 90 秒开场怎么说，老师才会继续听",
+          "topic_tags": [
+            "奖学金答辩",
+            "开场",
+            "表达"
+          ],
+          "creator_type": "speech_coach",
+          "content_angle": "聚焦答辩开场结构和重点",
+          "duration_sec": 67,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 51,
+            "completion_rate": 0.76,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "scholarship_v006",
+          "title": "竞赛拿奖靠天赋，普通人别硬卷",
+          "topic_tags": [
+            "竞赛",
+            "观点",
+            "劝退"
+          ],
+          "creator_type": "opinion_account",
+          "content_angle": "情绪观点为主，没有材料建议",
+          "duration_sec": 58,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 4,
+            "completion_rate": 0.07,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "无实际帮助",
+            "followup_action": "none"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对模板、评委视角和成果表达视频出现高停留与收藏。",
+        "avoided_signal": "对炫耀式内容和纯观点视频直接跳过。",
+        "next_query": "蓝桥杯 项目包装 简历奖项写法",
+        "session_outcome": "用户更需要可直接复用的材料结构和句式，而不是泛泛而谈的经验分享。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "评委视角",
+          "模板句式",
+          "成果表达"
+        ],
+        "rejected_angles": [
+          "证书炫耀",
+          "空泛劝退"
+        ],
+        "confidence_delta": 0.13
+      }
+    },
+    {
+      "session_id": "session_04_macbook_dev",
+      "trigger_event": {
+        "event_type": "platform_heat_rise",
+        "event_name": "平台内“MacBook 开发体验 / 教育优惠”内容升温",
+        "event_time": "2026-06-14T20:25:00+08:00",
+        "why_now": "618 和教育优惠内容在平台内密集出现，用户开始评估 MacBook 是否真的适合自己的程序员开发场景。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_dorm",
+        "time_slot": "evening",
+        "device": "iphone",
+        "mood": "设备决策谨慎",
+        "urgency": "medium_high"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "MacBook 程序员使用体验 前端开发 16g够吗",
+          "intent_label": "device_fit",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "MacBook Air 程序员 Docker IDEA 体验",
+          "intent_label": "development_stack_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "学生党 MacBook 开发配置怎么选",
+          "intent_label": "budget_refinement",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "macbook_v001",
+          "title": "前端开发用 MacBook Air 16G 够不够，我拿真实项目试给你看",
+          "topic_tags": [
+            "MacBook Air",
+            "前端开发",
+            "16G"
+          ],
+          "creator_type": "developer_creator",
+          "content_angle": "用真实项目测试编译、浏览器和本地服务体验",
+          "duration_sec": 126,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 118,
+            "completion_rate": 0.94,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": true,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "macbook_v002",
+          "title": "Docker + IDEA + 前端项目一起开，MacBook Air 会不会顶不住",
+          "topic_tags": [
+            "Docker",
+            "IDEA",
+            "开发场景"
+          ],
+          "creator_type": "developer_creator",
+          "content_angle": "高负载场景下对 Air 和 Pro 的差异对比",
+          "duration_sec": 109,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 83,
+            "completion_rate": 0.76,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "macbook_v003",
+          "title": "学生党别盲冲顶配，程序员选 MacBook 先看这三个场景",
+          "topic_tags": [
+            "学生党",
+            "MacBook",
+            "选购"
+          ],
+          "creator_type": "campus_developer",
+          "content_angle": "按预算和开发强度给出配置建议",
+          "duration_sec": 93,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 79,
+            "completion_rate": 0.85,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "macbook_v004",
+          "title": "MacBook 开箱真香，颜值直接拉满",
+          "topic_tags": [
+            "开箱",
+            "颜值",
+            "苹果"
+          ],
+          "creator_type": "lifestyle_creator",
+          "content_angle": "外观展示为主，没有开发体验",
+          "duration_sec": 52,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 4,
+            "completion_rate": 0.08,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "缺少开发信息",
+            "followup_action": "none"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "macbook_v005",
+          "title": "我用 MacBook 写代码一周后，最痛苦的是这两个兼容问题",
+          "topic_tags": [
+            "兼容问题",
+            "程序员",
+            "MacBook"
+          ],
+          "creator_type": "developer_creator",
+          "content_angle": "聚焦 Homebrew、容器与外接设备兼容",
+          "duration_sec": 87,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 57,
+            "completion_rate": 0.66,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "checked_comments"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "macbook_v006",
+          "title": "MacBook Pro 值不值多花那几千，就看你是不是这类开发者",
+          "topic_tags": [
+            "MacBook Pro",
+            "预算",
+            "开发者"
+          ],
+          "creator_type": "tech_reviewer",
+          "content_angle": "按开发强度划分 Air 与 Pro 的边界",
+          "duration_sec": 99,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 72,
+            "completion_rate": 0.73,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对真实开发场景测试、预算边界和配置建议视频出现高停留与收藏。",
+        "avoided_signal": "对纯开箱和只谈颜值内容直接跳过。",
+        "next_query": "学生党 MacBook 开发配置怎么选",
+        "session_outcome": "用户倾向于以开发负载为核心判断 MacBook Air 与 Pro，而不是被外观和品牌氛围带动。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "真实开发场景测试",
+          "预算与负载边界",
+          "兼容性说明"
+        ],
+        "rejected_angles": [
+          "纯开箱",
+          "颜值导向"
+        ],
+        "confidence_delta": 0.17
+      }
+    },
+    {
+      "session_id": "session_05_phone_upgrade_decision",
+      "trigger_event": {
+        "event_type": "platform_heat_rise",
+        "event_name": "平台内“iPhone17 系列 / 安卓旗舰横评”内容持续升温",
+        "event_time": "2026-09-18T21:20:00+08:00",
+        "why_now": "新机发布窗口叠加平台内大量换机内容，用户开始高频比较不同品牌旗舰，并在 iPhone17 系列内部反复纠结型号选择。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_dorm",
+        "time_slot": "late_evening",
+        "device": "iphone",
+        "mood": "换机纠结",
+        "urgency": "medium_high"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "iPhone17 系列怎么选",
+          "intent_label": "series_decision",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "iPhone17 Air 17 Pro 17 Pro Max 区别",
+          "intent_label": "model_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "iPhone17 和小米16 华为 Mate80 vivo X300 怎么选",
+          "intent_label": "cross_brand_comparison",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "phone_upgrade_v001",
+          "title": "iPhone17 系列别只看名字，四个型号真正差在这五件事",
+          "topic_tags": [
+            "iPhone17",
+            "换机",
+            "型号对比"
+          ],
+          "creator_type": "tech_reviewer",
+          "content_angle": "按手感、续航、性能、影像和价格梳理全系定位",
+          "duration_sec": 121,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 112,
+            "completion_rate": 0.93,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": true,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "phone_upgrade_v002",
+          "title": "iPhone17 Air 和 17 Pro 谁更适合学生党，这期只讲真实取舍",
+          "topic_tags": [
+            "iPhone17 Air",
+            "iPhone17 Pro",
+            "学生党"
+          ],
+          "creator_type": "tech_reviewer",
+          "content_angle": "围绕轻薄、续航、影像和使用年限做取舍分析",
+          "duration_sec": 97,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 89,
+            "completion_rate": 0.92,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "phone_upgrade_v003",
+          "title": "iPhone17 Pro 还是 Pro Max？如果你在意续航和握持，这条最关键",
+          "topic_tags": [
+            "iPhone17 Pro",
+            "Pro Max",
+            "续航"
+          ],
+          "creator_type": "apple_creator",
+          "content_angle": "聚焦大杯和超大杯的续航、重量与影像边界",
+          "duration_sec": 88,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 74,
+            "completion_rate": 0.84,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "phone_upgrade_v004",
+          "title": "小米16、华为 Mate80、vivo X300 正面对比 iPhone17，谁更值得换",
+          "topic_tags": [
+            "安卓旗舰",
+            "跨品牌对比",
+            "iPhone17"
+          ],
+          "creator_type": "tech_reviewer",
+          "content_angle": "从系统生态、影像、续航和价格比较苹果与安卓旗舰",
+          "duration_sec": 133,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 101,
+            "completion_rate": 0.76,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "checked_comments"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "phone_upgrade_v005",
+          "title": "iPhone17 全系开箱第一眼，颜值党直接看这条",
+          "topic_tags": [
+            "开箱",
+            "颜值",
+            "iPhone17"
+          ],
+          "creator_type": "lifestyle_creator",
+          "content_angle": "以外观和配色展示为主，缺少长期体验和购买建议",
+          "duration_sec": 52,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 5,
+            "completion_rate": 0.1,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "缺少决策信息",
+            "followup_action": "none"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "phone_upgrade_v006",
+          "title": "换机别只看参数表，我把 iPhone17 系列用了三天后的真实感受讲透",
+          "topic_tags": [
+            "长期体验",
+            "iPhone17",
+            "真实感受"
+          ],
+          "creator_type": "long_term_reviewer",
+          "content_angle": "从主力机体验出发谈发热、续航、手感和生态迁移成本",
+          "duration_sec": 116,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 92,
+            "completion_rate": 0.79,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对全系定位、Air 与 Pro 的取舍分析、跨品牌横评视频停留最长，并出现连续收藏。",
+        "avoided_signal": "对纯开箱和只讲颜值内容几乎不停留。",
+        "next_query": "iPhone17 和小米16 华为 Mate80 vivo X300 怎么选",
+        "session_outcome": "用户已经形成明确换机意向，但仍在 Air 的轻薄、Pro 的均衡和 Pro Max 的续航之间反复比较，同时保留安卓旗舰作为价格与影像备选。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "全系定位梳理",
+          "跨品牌横评",
+          "长期主力机体验"
+        ],
+        "rejected_angles": [
+          "纯开箱",
+          "只报参数"
+        ],
+        "confidence_delta": 0.19
+      }
+    },
+    {
+      "session_id": "session_06_world_cup_france",
+      "trigger_event": {
+        "event_type": "match_window_heat_rise",
+        "event_name": "平台内“世界杯法国队大名单 / 首发预测”内容升温",
+        "event_time": "2026-06-15T18:45:00+08:00",
+        "why_now": "法国国家队赛前内容密集出现，用户在比赛开始前进入阵容和战术信息收集状态。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_canteen",
+        "time_slot": "pre_match_evening",
+        "device": "iphone",
+        "mood": "赛前兴奋",
+        "urgency": "medium"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "世界杯 法国队 大名单 首发 战术看点",
+          "intent_label": "match_preview",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "法国队 中场配置 姆巴佩 搭档",
+          "intent_label": "lineup_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "法国队首发变化 会不会双后腰",
+          "intent_label": "tactical_refinement",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "france_v001",
+          "title": "法国队赛前速看：这套首发最可能决定比赛节奏",
+          "topic_tags": [
+            "法国队",
+            "首发预测",
+            "世界杯"
+          ],
+          "creator_type": "football_analyst",
+          "content_angle": "首发猜想结合节奏和对位影响",
+          "duration_sec": 84,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 77,
+            "completion_rate": 0.92,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "france_v002",
+          "title": "姆巴佩身边该配谁？法国队前场搭档的三种方案",
+          "topic_tags": [
+            "姆巴佩",
+            "前场搭档",
+            "法国队"
+          ],
+          "creator_type": "football_commentator",
+          "content_angle": "分析前场化学反应与空间分配",
+          "duration_sec": 79,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 64,
+            "completion_rate": 0.81,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "france_v003",
+          "title": "法国队中场到底要不要双后腰，这场其实藏着答案",
+          "topic_tags": [
+            "法国队中场",
+            "双后腰",
+            "战术"
+          ],
+          "creator_type": "tactical_creator",
+          "content_angle": "从中场平衡看阵型选择",
+          "duration_sec": 93,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 69,
+            "completion_rate": 0.74,
+            "liked": true,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "checked_comments"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "france_v004",
+          "title": "法国队高燃混剪，看完直接热血上头",
+          "topic_tags": [
+            "混剪",
+            "高燃",
+            "法国队"
+          ],
+          "creator_type": "fan_editor",
+          "content_angle": "情绪拉满，但没有赛前信息",
+          "duration_sec": 47,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 6,
+            "completion_rate": 0.13,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "信息密度太低",
+            "followup_action": "none"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "france_v005",
+          "title": "法国队赛前只需要看这三个对位，别被表面阵容骗了",
+          "topic_tags": [
+            "关键对位",
+            "法国队",
+            "世界杯"
+          ],
+          "creator_type": "football_analyst",
+          "content_angle": "聚焦比赛最关键的三个位置冲突",
+          "duration_sec": 88,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 71,
+            "completion_rate": 0.81,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "france_v006",
+          "title": "法国球迷集合！一起喊就完了",
+          "topic_tags": [
+            "球迷",
+            "呐喊",
+            "法国队"
+          ],
+          "creator_type": "fan_account",
+          "content_angle": "情绪互动内容，没有战术与阵容信息",
+          "duration_sec": 35,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 3,
+            "completion_rate": 0.09,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "只有情绪没有内容",
+            "followup_action": "none"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对首发预测、对位分析和中场配置视频停留更久，并出现收藏。",
+        "avoided_signal": "对高燃混剪和纯球迷情绪内容缺乏耐心。",
+        "next_query": "法国队首发变化 会不会双后腰",
+        "session_outcome": "用户赛前更想快速获得阵容变化和关键战术点，而不是情绪类内容。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "首发预测",
+          "关键对位",
+          "战术配置"
+        ],
+        "rejected_angles": [
+          "高燃混剪",
+          "球迷喊话"
+        ],
+        "confidence_delta": 0.11
+      }
+    },
+    {
+      "session_id": "session_07_hok_ultimate_awakening",
+      "trigger_event": {
+        "event_type": "mode_heat_rise",
+        "event_name": "平台内“王者终极觉醒模式 / 强势英雄”内容激增",
+        "event_time": "2026-07-19T23:15:00+08:00",
+        "why_now": "终极觉醒模式处于活跃周期，平台内攻略和整活内容一起涌现，用户希望快速知道哪些英雄和技能组合最值得上手。"
+      },
+      "context_snapshot": {
+        "location_type": "campus_dorm",
+        "time_slot": "late_night",
+        "device": "iphone",
+        "mood": "开黑前速查",
+        "urgency": "high"
+      },
+      "search_chain": [
+        {
+          "step": 1,
+          "query": "王者荣耀终极觉醒模式 强势英雄 玩法",
+          "intent_label": "mode_quick_mastery",
+          "query_source": "event_triggered"
+        },
+        {
+          "step": 2,
+          "query": "终极觉醒 最离谱技能组合",
+          "intent_label": "combo_refinement",
+          "query_source": "result_refinement"
+        },
+        {
+          "step": 3,
+          "query": "终极觉醒 新手别碰哪些英雄",
+          "intent_label": "avoidance_refinement",
+          "query_source": "comment_inspired"
+        }
+      ],
+      "result_impressions": [
+        {
+          "rank": 1,
+          "video_id": "hok_v001",
+          "title": "终极觉醒开局别乱选，这五个英雄容错最高",
+          "topic_tags": [
+            "终极觉醒",
+            "强势英雄",
+            "新手"
+          ],
+          "creator_type": "game_creator",
+          "content_angle": "从容错率和上手难度给出英雄选择",
+          "duration_sec": 73,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 69,
+            "completion_rate": 0.95,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": true,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 2,
+          "video_id": "hok_v002",
+          "title": "终极觉醒最离谱的三套技能组合，团战一开就离谱",
+          "topic_tags": [
+            "技能组合",
+            "团战",
+            "终极觉醒"
+          ],
+          "creator_type": "game_creator",
+          "content_angle": "展示组合上限与实战触发条件",
+          "duration_sec": 81,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 63,
+            "completion_rate": 0.78,
+            "liked": true,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "searched_next_query"
+          }
+        },
+        {
+          "rank": 3,
+          "video_id": "hok_v003",
+          "title": "终极觉醒机制一口气讲完，不懂这个根本打不明白",
+          "topic_tags": [
+            "机制",
+            "终极觉醒",
+            "攻略"
+          ],
+          "creator_type": "game_creator",
+          "content_angle": "先讲模式机制，再讲英雄选择逻辑",
+          "duration_sec": 98,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 82,
+            "completion_rate": 0.84,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 4,
+          "video_id": "hok_v004",
+          "title": "终极觉醒纯整活，十秒钟飞天遁地笑到停不下来",
+          "topic_tags": [
+            "整活",
+            "搞笑",
+            "终极觉醒"
+          ],
+          "creator_type": "entertainment_gamer",
+          "content_angle": "娱乐片段为主，没有稳定打法",
+          "duration_sec": 44,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 19,
+            "completion_rate": 0.43,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "returned_to_results"
+          }
+        },
+        {
+          "rank": 5,
+          "video_id": "hok_v005",
+          "title": "终极觉醒新手别碰这四个英雄，强度高也容易送",
+          "topic_tags": [
+            "新手避坑",
+            "英雄选择",
+            "终极觉醒"
+          ],
+          "creator_type": "game_creator",
+          "content_angle": "解释高强度英雄为什么未必适合新手",
+          "duration_sec": 70,
+          "interaction": {
+            "clicked": true,
+            "watch_duration_sec": 57,
+            "completion_rate": 0.81,
+            "liked": false,
+            "collected": true,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "",
+            "followup_action": "saved_for_later"
+          }
+        },
+        {
+          "rank": 6,
+          "video_id": "hok_v006",
+          "title": "去年的终极觉醒老套路，今年依旧乱杀",
+          "topic_tags": [
+            "旧版本",
+            "终极觉醒",
+            "套路"
+          ],
+          "creator_type": "game_account",
+          "content_angle": "旧版本剪辑，没有版本适配说明",
+          "duration_sec": 59,
+          "interaction": {
+            "clicked": false,
+            "watch_duration_sec": 5,
+            "completion_rate": 0.08,
+            "liked": false,
+            "collected": false,
+            "shared": false,
+            "replayed": false,
+            "skip_reason": "版本过旧",
+            "followup_action": "none"
+          }
+        }
+      ],
+      "interaction_summary": {
+        "top_signal": "对高容错英雄、模式机制和技能组合视频出现连续收藏。",
+        "avoided_signal": "对旧版本攻略和纯整活内容停留明显更短。",
+        "next_query": "终极觉醒 新手别碰哪些英雄",
+        "session_outcome": "用户更想先掌握模式机制和高容错解法，再尝试上限更高的整活组合。"
+      },
+      "derived_evidence": {
+        "preferred_angles": [
+          "高容错英雄",
+          "机制速讲",
+          "可复制的技能组合"
+        ],
+        "rejected_angles": [
+          "旧版本套路",
+          "纯娱乐整活"
+        ],
+        "confidence_delta": 0.12
+      }
+    }
+  ]
+}
