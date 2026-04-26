@@ -99,9 +99,16 @@ export default defineConfig((): Promise<UserConfig> => {
           // }),
         ],
         resolve: {
-          alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
-          },
+          alias: [
+            {
+              find: '@',
+              replacement: fileURLToPath(new URL('./src', import.meta.url))
+            },
+            {
+              find: /^three$/,
+              replacement: fileURLToPath(new URL('./node_modules/three/build/three.module.js', import.meta.url))
+            }
+          ],
           extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
         },
         build: {
@@ -169,12 +176,20 @@ export default defineConfig((): Promise<UserConfig> => {
           port: 3000,
           open: true,
           host: '0.0.0.0',
+          headers: {
+            'Cross-Origin-Embedder-Policy': 'require-corp',
+            'Cross-Origin-Opener-Policy': 'same-origin'
+          },
           fs: {
             strict: false
           }
         },
         preview: {
-          port: 5555
+          port: 5555,
+          headers: {
+            'Cross-Origin-Embedder-Policy': 'require-corp',
+            'Cross-Origin-Opener-Policy': 'same-origin'
+          }
         }
       })
     })

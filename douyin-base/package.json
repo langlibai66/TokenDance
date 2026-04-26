@@ -23,6 +23,7 @@
     "commit": "git-cz"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.2.0",
     "@jambonn/vue-lazyload": "1.0.9",
     "axios": "^1.15.0",
     "axios-mock-adapter": "^1.22.0",
@@ -30,6 +31,8 @@
     "libarchive-wasm": "^1.1.0",
     "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
+    "three": "^0.182.0",
+    "three-usdz-loader-esm": "^1.0.8-esm",
     "vue": "^3.5.13",
     "vue-router": "4.3.0"
   },

@@ -16,7 +16,7 @@ import { recommendedVideo } from '@/api/videos'
 
 const BRUSH_COMPARE_CARD = {
   aweme_id: 'brush-compare-card',
-  desc: '推荐专题：电动牙刷横向对比',
+  desc: '推荐专题：iPhone 17 / iPhone 17 Air / iPhone 17 Pro 横评对比',
   type: 'brush-compare'
 }
 

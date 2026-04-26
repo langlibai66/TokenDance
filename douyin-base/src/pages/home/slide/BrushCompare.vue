@@ -5,16 +5,24 @@
 
       <div class="feed-content">
         <div class="story-head">
-          <span class="story-badge">iPhone 对比</span>
-          <p>轻滑切换 iPhone 17 系列，雷达图同步变化</p>
+          <span class="story-badge">iPhone 横评</span>
+          <p>点按切换三款 iPhone，3D 模型自动转动</p>
         </div>
 
         <div class="swipe-card-shell">
-          <article class="product-card" :class="{ 'is-dragging': isDragging }" :style="productCardStyle" @pointerdown="onPointerDown">
+          <article class="product-card">
             <div class="hero-row">
               <div class="product-visual">
                 <div class="visual-aura"></div>
-                <div class="phone-figure">
+                <GlbPhoneViewer
+                  v-if="!modelErrors[currentProduct.id]"
+                  :key="currentProduct.id"
+                  class="phone-model"
+                  :src="currentProduct.modelSrc"
+                  :active="props.active"
+                  @error="markModelError(currentProduct.id)"
+                />
+                <div v-else class="phone-figure" :class="currentProduct.visualClass">
                   <span class="phone-body"></span>
                   <span class="phone-island"></span>
                   <span class="phone-camera main"></span>
@@ -40,7 +48,7 @@
 
                 <div class="product-meta">
                   <div class="meta-item">
-                    <span>价位</span>
+                    <span>定位</span>
                     <strong>{{ currentProduct.price }}</strong>
                   </div>
                   <div class="meta-item">
@@ -122,7 +130,7 @@
         </div>
 
         <button class="caption-link" type="button" @click="goToReferenceVideo">
-          <span>看参考测评视频</span>
+          <span>看 iPhone 17 横评视频</span>
           <strong>{{ currentProduct.name }}</strong>
         </button>
       </div>
@@ -135,6 +143,10 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import bus, { EVENT_KEY } from '@/utils/bus'
 import { useNav } from '@/utils/hooks/useNav'
 import { recommendedVideo } from '@/api/videos'
+import GlbPhoneViewer from './GlbPhoneViewer.vue'
+import iphone17Glb from '@/assets/3d_data/glb/iphone-17.glb?url'
+import iphone17AirGlb from '@/assets/3d_data/glb/iphone-17-air.glb?url'
+import iphone17ProGlb from '@/assets/3d_data/glb/iphone-17-pro.glb?url'
 
 type Product = {
   id: string
@@ -148,6 +160,8 @@ type Product = {
   radarTitle: string
   radarCopy: string
   compareNote: string
+  visualClass: string
+  modelSrc: string
   colors: {
     main: string
     accent: string
@@ -183,15 +197,17 @@ const products: Product[] = [
   {
     id: 'iphone17',
     name: 'iPhone 17',
-    chip: '标准款首选',
-    price: '5999 元起',
-    chipSpec: 'A19',
+    chip: '标准旗舰',
+    price: '主流首选',
+    chipSpec: 'A 系列',
     camera: '双摄',
-    summary: '性价比和手感最友好，适合想买新一代 iPhone 又不追求全部专业特性的用户。',
-    tags: ['标准款更均衡', '手感更轻巧', '性价比最高'],
+    summary: 'iPhone 17 在性能、屏幕、手感和价格之间最均衡，是大多数人换机时最稳的选择。',
+    tags: ['均衡体验', '价格更稳', '日常够用'],
     radarTitle: 'iPhone 17 评分轮廓',
-    radarCopy: '整体轮廓很均衡，性能和屏幕够用，性价比维度最突出。',
+    radarCopy: '整体表现没有明显短板，性价比和手感更突出，适合日常使用。',
     compareNote: '适合大多数日常使用、希望预算更稳的人。',
+    visualClass: 'phone-standard',
+    modelSrc: iphone17Glb,
     colors: {
       main: '#d9efff',
       accent: '#84c7ff',
@@ -200,51 +216,52 @@ const products: Product[] = [
     axes: [8.7, 8.2, 8.6, 9.1, 8.8, 9.0]
   },
   {
-    id: 'iphone17pro',
+    id: 'iphone17-air',
+    name: 'iPhone 17 Air',
+    chip: '轻薄优先',
+    price: '轻薄新档',
+    chipSpec: 'A 系列',
+    camera: '轻量影像',
+    summary: 'iPhone 17 Air 的重点是更薄更轻，手感和便携性更强，适合不想拿重机身的人。',
+    tags: ['轻薄机身', '手感最佳', '便携优先'],
+    radarTitle: 'iPhone 17 Air 评分轮廓',
+    radarCopy: '手感优势最明显，性能和屏幕保持旗舰水准，但影像和续航会为轻薄取舍。',
+    compareNote: '适合看重轻薄、单手握持和随身携带体验的人。',
+    visualClass: 'phone-air',
+    modelSrc: iphone17AirGlb,
+    colors: {
+      main: '#f0f7ff',
+      accent: '#bfd7ff',
+      deep: '#30405c'
+    },
+    axes: [8.8, 8.0, 8.1, 9.8, 9.0, 7.8]
+  },
+  {
+    id: 'iphone17-pro',
     name: 'iPhone 17 Pro',
-    chip: '专业均衡',
-    price: '7999 元起',
-    chipSpec: 'A19 Pro',
+    chip: '专业性能',
+    price: '专业旗舰',
+    chipSpec: 'A Pro',
     camera: '三摄',
-    summary: '在性能、影像和屏幕上明显更强，是专业功能和机身尺寸之间更平衡的一档。',
-    tags: ['性能更激进', '三摄更全能', '尺寸更均衡'],
+    summary: 'iPhone 17 Pro 在性能释放、影像系统和屏幕表现上更强，适合重度拍摄和创作用户。',
+    tags: ['性能更强', '三摄更全能', '屏幕更专业'],
     radarTitle: 'iPhone 17 Pro 评分轮廓',
-    radarCopy: '影像和屏幕维度拉升明显，整体更像追求综合旗舰体验的选择。',
-    compareNote: '适合既想要 Pro 能力，又不想上到最大机身的人。',
+    radarCopy: '性能、影像和屏幕维度明显领先，但价格和手感会比标准版更有负担。',
+    compareNote: '适合经常拍摄、剪辑，或想要更完整旗舰能力的人。',
+    visualClass: 'phone-pro',
+    modelSrc: iphone17ProGlb,
     colors: {
       main: '#ece4ff',
       accent: '#b692ff',
       deep: '#39275e'
     },
-    axes: [9.4, 9.3, 9.0, 8.4, 9.5, 7.4]
-  },
-  {
-    id: 'iphone17promax',
-    name: 'iPhone 17 Pro Max',
-    chip: '影像续航封顶',
-    price: '9999 元起',
-    chipSpec: 'A19 Pro',
-    camera: '三摄 + 潜望长焦',
-    summary: '续航和影像是三款里最强的，适合重度拍摄、长时间外出和偏好大屏体验的人。',
-    tags: ['续航最强', '长焦能力最完整', '大屏沉浸感最好'],
-    radarTitle: 'iPhone 17 Pro Max 评分轮廓',
-    radarCopy: '影像、续航和屏幕几乎拉满，但手感和性价比会为大尺寸与高价格让步。',
-    compareNote: '适合预算充足、最看重续航和影像上限的人。',
-    colors: {
-      main: '#fff0d9',
-      accent: '#ffb45f',
-      deep: '#5f3c18'
-    },
-    axes: [9.6, 9.7, 9.8, 7.6, 9.6, 6.6]
+    axes: [9.6, 9.5, 9.0, 8.2, 9.6, 7.2]
   }
 ]
 
 const currentIndex = ref(0)
 const displayAxes = ref<number[]>(new Array(6).fill(0))
-const isDragging = ref(false)
-const dragOffset = ref(0)
-const dragRotation = ref(0)
-const dragOpacity = ref(1)
+const modelErrors = ref<Record<string, boolean>>({})
 
 const currentProduct = computed(() => products[currentIndex.value])
 const themeStyle = computed(() => ({
@@ -253,10 +270,12 @@ const themeStyle = computed(() => ({
   '--product-deep': currentProduct.value.colors.deep
 }))
 
-const productCardStyle = computed(() => ({
-  transform: `translateX(${dragOffset.value}px) rotate(${dragRotation.value}deg)`,
-  opacity: String(dragOpacity.value)
-}))
+function markModelError(id: string) {
+  modelErrors.value = {
+    ...modelErrors.value,
+    [id]: true
+  }
+}
 
 function averageScore(values: number[]) {
   return (values.reduce((sum, value) => sum + value, 0) / values.length).toFixed(1)
@@ -284,8 +303,6 @@ const radarPolygonPoints = computed(() =>
 )
 
 let radarFrame = 0
-let dragStartX = 0
-let dragCurrentX = 0
 let radarReplayTimer = 0
 
 function replayRadar() {
@@ -325,55 +342,13 @@ function animateRadar(nextValues: number[]) {
   radarFrame = requestAnimationFrame(step)
 }
 
-function resetDrag() {
-  isDragging.value = false
-  dragOffset.value = 0
-  dragRotation.value = 0
-  dragOpacity.value = 1
-}
-
 function setProduct(index: number) {
-  currentIndex.value = (index + products.length) % products.length
-  resetDrag()
+  const nextIndex = ((index % products.length) + products.length) % products.length
+  if (nextIndex === currentIndex.value) {
+    return
+  }
+  currentIndex.value = nextIndex
   animateRadar(currentProduct.value.axes)
-}
-
-function changeProduct(step: number) {
-  setProduct(currentIndex.value + step)
-}
-
-function onPointerDown(event: PointerEvent) {
-  if (!props.active) return
-  isDragging.value = true
-  dragStartX = event.clientX
-  dragCurrentX = event.clientX
-}
-
-function onPointerMove(event: PointerEvent) {
-  if (!isDragging.value) return
-
-  dragCurrentX = event.clientX
-  const deltaX = dragCurrentX - dragStartX
-  dragOffset.value = deltaX
-  dragRotation.value = deltaX / 18
-  dragOpacity.value = Math.max(0.72, 1 - Math.abs(deltaX) / 320)
-}
-
-function onPointerUp() {
-  if (!isDragging.value) return
-
-  const deltaX = dragCurrentX - dragStartX
-  if (deltaX > 70) {
-    changeProduct(-1)
-    return
-  }
-
-  if (deltaX < -70) {
-    changeProduct(1)
-    return
-  }
-
-  resetDrag()
 }
 
 watch(
@@ -399,9 +374,6 @@ async function goToReferenceVideo() {
 }
 
 onMounted(() => {
-  window.addEventListener('pointermove', onPointerMove)
-  window.addEventListener('pointerup', onPointerUp)
-  window.addEventListener('pointercancel', onPointerUp)
   bus.on(EVENT_KEY.CURRENT_ITEM, handleCurrentItem)
 })
 
@@ -412,9 +384,6 @@ onBeforeUnmount(() => {
   if (radarReplayTimer) {
     window.clearTimeout(radarReplayTimer)
   }
-  window.removeEventListener('pointermove', onPointerMove)
-  window.removeEventListener('pointerup', onPointerUp)
-  window.removeEventListener('pointercancel', onPointerUp)
   bus.off(EVENT_KEY.CURRENT_ITEM, handleCurrentItem)
 })
 </script>
@@ -513,18 +482,10 @@ onBeforeUnmount(() => {
 
   .product-card {
     position: relative;
-    z-index: 1;
     height: 100%;
     padding: 12rem;
-    touch-action: pan-y;
-    user-select: none;
-    transition: transform 0.24s ease, box-shadow 0.24s ease, opacity 0.24s ease;
     overflow: hidden;
-  }
-
-  .product-card.is-dragging {
-    transition: none;
-    box-shadow: 0 18rem 36rem rgba(0, 0, 0, 0.3);
+    box-shadow: 0 18rem 36rem rgba(0, 0, 0, 0.26);
   }
 
   .hero-row {
@@ -557,73 +518,126 @@ onBeforeUnmount(() => {
     opacity: 0.38;
   }
 
-  .brush-figure {
+  .phone-model {
     position: absolute;
-    inset: 0;
+    inset: 8rem 7rem 12rem;
+    width: calc(100% - 14rem);
+    height: calc(100% - 20rem);
+    filter: drop-shadow(0 15rem 20rem rgba(0, 0, 0, 0.26));
+    pointer-events: none;
   }
 
-  .brush-head,
-  .brush-neck,
-  .brush-handle,
-  .brush-accent {
+  .phone-figure {
     position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 68rem;
+    height: 136rem;
+    transform: translate(-50%, -50%) rotate(-7deg);
+  }
+
+  .phone-body {
+    position: absolute;
+    inset: 0;
+    border-radius: 18rem;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 32%),
+      linear-gradient(180deg, var(--product-main), var(--product-deep));
+    border: 2rem solid rgba(255, 255, 255, 0.64);
+    box-shadow:
+      inset 0 8rem 14rem rgba(255, 255, 255, 0.22),
+      inset 0 -14rem 18rem rgba(0, 0, 0, 0.18),
+      0 18rem 28rem rgba(0, 0, 0, 0.3);
+  }
+
+  .phone-island,
+  .phone-camera,
+  .phone-flash,
+  .phone-shine {
+    position: absolute;
+  }
+
+  .phone-island {
+    top: 10rem;
+    left: 50%;
+    width: 28rem;
+    height: 8rem;
+    transform: translateX(-50%);
+    border-radius: 999rem;
+    background: rgba(4, 8, 14, 0.8);
+  }
+
+  .phone-camera {
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 42% 38%, rgba(255, 255, 255, 0.9) 0 2rem, transparent 3rem),
+      radial-gradient(circle, #182131 0 38%, #05070b 42% 100%);
+    border: 2rem solid rgba(255, 255, 255, 0.72);
+    box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.25);
+  }
+
+  .phone-camera.main {
+    top: 34rem;
+    left: 13rem;
+  }
+
+  .phone-camera.top {
+    top: 34rem;
+    right: 13rem;
+  }
+
+  .phone-camera.bottom {
+    top: 58rem;
+    left: 13rem;
+  }
+
+  .phone-flash {
+    top: 61rem;
+    right: 17rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background: #fff6cf;
+  }
+
+  .phone-shine {
+    inset: 10rem auto auto 10rem;
+    width: 18rem;
+    height: 80rem;
+    border-radius: 999rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent);
+    transform: rotate(14deg);
+  }
+
+  .phone-air {
+    width: 56rem;
+    height: 136rem;
+  }
+
+  .phone-air .phone-body {
+    border-radius: 16rem;
+  }
+
+  .phone-air .phone-camera.top,
+  .phone-air .phone-camera.bottom,
+  .phone-air .phone-flash {
+    display: none;
+  }
+
+  .phone-air .phone-camera.main {
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .brush-head {
-    top: 16rem;
-    width: 38rem;
-    height: 44rem;
-    border-radius: 18rem 18rem 14rem 14rem;
-    background: linear-gradient(180deg, #fff, #dfe7df 72%);
+  .phone-pro {
+    width: 72rem;
+    height: 138rem;
   }
 
-  .brush-head::before,
-  .brush-head::after {
-    content: '';
-    position: absolute;
-    top: 8rem;
-    width: 7rem;
-    height: 16rem;
-    border-radius: 999rem;
-    background: linear-gradient(180deg, var(--product-accent), #f8fff3);
-  }
-
-  .brush-head::before {
-    left: 9rem;
-  }
-
-  .brush-head::after {
-    right: 9rem;
-  }
-
-  .brush-neck {
-    top: 50rem;
-    width: 10rem;
-    height: 34rem;
-    border-radius: 999rem;
-    background: linear-gradient(180deg, #dfe8df, #a5b2a7);
-  }
-
-  .brush-handle {
-    top: 78rem;
-    width: 56rem;
-    height: 106rem;
-    border-radius: 28rem;
-    background: linear-gradient(180deg, var(--product-main), var(--product-deep));
-    box-shadow:
-      inset 0 8rem 12rem rgba(255, 255, 255, 0.18),
-      inset 0 -12rem 16rem rgba(0, 0, 0, 0.14),
-      0 12rem 18rem rgba(0, 0, 0, 0.2);
-  }
-
-  .brush-accent {
-    top: 112rem;
-    width: 16rem;
-    height: 34rem;
-    border-radius: 999rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.2));
+  .phone-pro .phone-body {
+    border-color: rgba(255, 255, 255, 0.74);
   }
 
   .product-main {
