@@ -136,10 +136,18 @@ function buildSportsRecommendVideos() {
   )
 }
 
+function buildAiRecommendVideos() {
+  return moveVideoToIndexByAuthor(
+    moveVideoToIndexByAuthor(buildRecommendVideos(aiPosts), '产品君', 0),
+    '差评前沿部',
+    1
+  )
+}
+
 const recommendVideoSourceMap = {
   [FEED_PERSONA.TECH]: buildTechRecommendVideos(),
   [FEED_PERSONA.SPORTS]: buildSportsRecommendVideos(),
-  [FEED_PERSONA.AI]: buildRecommendVideos(aiPosts)
+  [FEED_PERSONA.AI]: buildAiRecommendVideos()
 }
 
 function getActiveRecommendVideos() {
