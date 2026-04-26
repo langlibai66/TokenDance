@@ -1,0 +1,25 @@
+{
+  "user_id": "college_tech_award_student_001",
+  "observed_at": "2026-09-18T21:20:00+08:00",
+  "time_slot": "late_evening",
+  "context": {
+    "location_type": "campus_dorm",
+    "device": "iphone",
+    "day_type": "weekday",
+    "note": "用户正在刷到大量新机横评内容"
+  },
+  "event_signals": [
+    {
+      "type": "platform_heat_rise",
+      "topic": "iPhone17 系列与安卓旗舰横评内容升温",
+      "strength": 0.93,
+      "why_now": "新机发布窗口叠加平台内跨品牌对比内容集中出现，换机决策需求被明显放大。"
+    },
+    {
+      "type": "shopping_window",
+      "topic": "新机发布与大促节点叠加",
+      "strength": 0.78,
+      "why_now": "用户更容易在发布期和促销窗口同时比较不同品牌旗舰。"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     LLM_BASE_URL: str = Field(...)
     LLM_MODEL_NAME: str = Field(...)
     ARK_API_KEY: str = Field(...)
+    BOCHA_API_KEY: str = Field(description="bocha api key")
 
 
 settings = Settings()
