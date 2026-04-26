@@ -5,8 +5,8 @@
 
       <div class="feed-content">
         <div class="story-head">
-          <span class="story-badge">牙刷对比</span>
-          <p>轻滑切换机型，雷达图同步变化</p>
+          <span class="story-badge">iPhone 对比</span>
+          <p>轻滑切换 iPhone 17 系列，雷达图同步变化</p>
         </div>
 
         <div class="swipe-card-shell">
@@ -14,11 +14,14 @@
             <div class="hero-row">
               <div class="product-visual">
                 <div class="visual-aura"></div>
-                <div class="brush-figure">
-                  <span class="brush-head"></span>
-                  <span class="brush-neck"></span>
-                  <span class="brush-handle"></span>
-                  <span class="brush-accent"></span>
+                <div class="phone-figure">
+                  <span class="phone-body"></span>
+                  <span class="phone-island"></span>
+                  <span class="phone-camera main"></span>
+                  <span class="phone-camera top"></span>
+                  <span class="phone-camera bottom"></span>
+                  <span class="phone-flash"></span>
+                  <span class="phone-shine"></span>
                 </div>
               </div>
 
@@ -41,12 +44,12 @@
                     <strong>{{ currentProduct.price }}</strong>
                   </div>
                   <div class="meta-item">
-                    <span>续航</span>
-                    <strong>{{ currentProduct.battery }}</strong>
+                    <span>芯片</span>
+                    <strong>{{ currentProduct.chipSpec }}</strong>
                   </div>
                   <div class="meta-item">
-                    <span>噪音</span>
-                    <strong>{{ currentProduct.noise }}</strong>
+                    <span>影像</span>
+                    <strong>{{ currentProduct.camera }}</strong>
                   </div>
                 </div>
               </div>
@@ -138,9 +141,8 @@ type Product = {
   name: string
   chip: string
   price: string
-  battery: string
-  motor: string
-  noise: string
+  chipSpec: string
+  camera: string
   summary: string
   tags: string[]
   radarTitle: string
@@ -167,7 +169,7 @@ const props = defineProps({
 
 const nav = useNav()
 
-const axes = ['清洁力', '续航', '护龈', '噪音', '颜值', '价格']
+const axes = ['性能', '影像', '续航', '手感', '屏幕', '性价比']
 const labelClasses = [
   'radar-label-top',
   'radar-label-top-right',
@@ -179,64 +181,61 @@ const labelClasses = [
 
 const products: Product[] = [
   {
-    id: 'laifen',
-    name: 'Laifen Wave',
-    chip: '旗舰刷感',
-    price: '799 元',
-    battery: '30 天',
-    motor: '摆动 + 声波',
-    noise: '58 dB',
-    summary: '适合想从基础电动牙刷升级到更完整刷感的人，优点集中在清洁结构、做工和视觉质感。',
-    tags: ['清洁轮廓最饱满', '刷感偏进阶', '设计感突出'],
-    radarTitle: 'Laifen Wave 评分轮廓',
-    radarCopy: '清洁力和颜值最强，价格维度偏保守，因此整体像高完成度升级款。',
-    compareNote: '适合预算更高、明显在意刷感与外观的人。',
+    id: 'iphone17',
+    name: 'iPhone 17',
+    chip: '标准款首选',
+    price: '5999 元起',
+    chipSpec: 'A19',
+    camera: '双摄',
+    summary: '性价比和手感最友好，适合想买新一代 iPhone 又不追求全部专业特性的用户。',
+    tags: ['标准款更均衡', '手感更轻巧', '性价比最高'],
+    radarTitle: 'iPhone 17 评分轮廓',
+    radarCopy: '整体轮廓很均衡，性能和屏幕够用，性价比维度最突出。',
+    compareNote: '适合大多数日常使用、希望预算更稳的人。',
     colors: {
-      main: '#d8f0c0',
-      accent: '#8fda69',
-      deep: '#1f4530'
+      main: '#d9efff',
+      accent: '#84c7ff',
+      deep: '#23405f'
     },
-    axes: [9.2, 8.5, 8.3, 6.8, 9.5, 6.4]
+    axes: [8.7, 8.2, 8.6, 9.1, 8.8, 9.0]
   },
   {
-    id: 'oclean',
-    name: 'Oclean X Pro Elite',
-    chip: '均衡全能',
-    price: '599 元',
-    battery: '35 天',
-    motor: '84,000 次/分声波',
-    noise: '45 dB',
-    summary: '六个维度最均衡的一款，静音、续航和价格更讨好大多数用户，属于容易买对的主流选项。',
-    tags: ['综合分最高', '静音最强', '价格更稳'],
-    radarTitle: 'Oclean X Pro Elite 评分轮廓',
-    radarCopy: '轮廓整体更圆，说明没有明显短板，适合作为主流用户的一步到位方案。',
-    compareNote: '适合大多数第一次认真买电动牙刷的人。',
+    id: 'iphone17pro',
+    name: 'iPhone 17 Pro',
+    chip: '专业均衡',
+    price: '7999 元起',
+    chipSpec: 'A19 Pro',
+    camera: '三摄',
+    summary: '在性能、影像和屏幕上明显更强，是专业功能和机身尺寸之间更平衡的一档。',
+    tags: ['性能更激进', '三摄更全能', '尺寸更均衡'],
+    radarTitle: 'iPhone 17 Pro 评分轮廓',
+    radarCopy: '影像和屏幕维度拉升明显，整体更像追求综合旗舰体验的选择。',
+    compareNote: '适合既想要 Pro 能力，又不想上到最大机身的人。',
     colors: {
-      main: '#d7eff7',
-      accent: '#74d2e7',
-      deep: '#1d4050'
+      main: '#ece4ff',
+      accent: '#b692ff',
+      deep: '#39275e'
     },
-    axes: [8.7, 9.4, 8.8, 9.1, 8.4, 8.8]
+    axes: [9.4, 9.3, 9.0, 8.4, 9.5, 7.4]
   },
   {
-    id: 'oralb',
-    name: 'Oral-B iO 3',
-    chip: '圆头易上手',
-    price: '499 元',
-    battery: '14 天',
-    motor: '微震 + 小圆头',
-    noise: '52 dB',
-    summary: '更适合看重上手门槛低、刷头路径好理解的人，小圆头和品牌认知会让体验更熟悉。',
-    tags: ['入门更友好', '圆头路径直观', '品牌认知高'],
-    radarTitle: 'Oral-B iO 3 评分轮廓',
-    radarCopy: '清洁力依旧不错，但续航短一些，整体更像稳妥入门款而不是全能王。',
-    compareNote: '适合想要圆头路线、希望容易适应的人。',
+    id: 'iphone17promax',
+    name: 'iPhone 17 Pro Max',
+    chip: '影像续航封顶',
+    price: '9999 元起',
+    chipSpec: 'A19 Pro',
+    camera: '三摄 + 潜望长焦',
+    summary: '续航和影像是三款里最强的，适合重度拍摄、长时间外出和偏好大屏体验的人。',
+    tags: ['续航最强', '长焦能力最完整', '大屏沉浸感最好'],
+    radarTitle: 'iPhone 17 Pro Max 评分轮廓',
+    radarCopy: '影像、续航和屏幕几乎拉满，但手感和性价比会为大尺寸与高价格让步。',
+    compareNote: '适合预算充足、最看重续航和影像上限的人。',
     colors: {
-      main: '#f7dfe8',
-      accent: '#f190b1',
-      deep: '#53253a'
+      main: '#fff0d9',
+      accent: '#ffb45f',
+      deep: '#5f3c18'
     },
-    axes: [8.8, 6.5, 8.2, 7.1, 8.1, 8.4]
+    axes: [9.6, 9.7, 9.8, 7.6, 9.6, 6.6]
   }
 ]
 
