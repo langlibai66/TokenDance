@@ -1,12 +1,150 @@
 import resource from '../assets/data/resource.js'
+import aiPosts from '@/assets/data/ai_posts.json'
+import sportsPosts from '@/assets/data/sports_posts.json'
 import techPosts from '@/assets/data/tech_posts.json'
-import { _fetch, cloneDeep, random } from '@/utils'
+import { _fetch, _storageGet, cloneDeep, random } from '@/utils'
 import { BASE_URL, FILE_URL } from '@/config'
 import { useBaseStore } from '@/store/pinia'
 import { axiosInstance } from '@/utils/request'
 import MockAdapter from 'axios-mock-adapter'
+import { DEFAULT_FEED_PERSONA, FEED_PERSONA, FEED_PERSONA_STORAGE_KEY } from '@/constants/feedPersona'
 
 const mock = new MockAdapter(axiosInstance)
+
+function ensureImageField(urlList: string[] = []) {
+  return {
+    uri: urlList[0] || null,
+    url_list: urlList,
+    width: null,
+    height: null
+  }
+}
+
+function ensureImageCollection(urlList: string[] = []) {
+  return [
+    {
+      url_list: urlList
+    }
+  ]
+}
+
+function normalizeRecommendVideo(video: any) {
+  const author = video.author || {}
+  const avatarSmall =
+    author.avatar_168x168?.url_list?.filter(Boolean) ||
+    video.music?.cover_thumb?.url_list?.filter(Boolean) ||
+    video.music?.cover_medium?.url_list?.filter(Boolean) ||
+    video.video?.cover?.url_list?.filter(Boolean) ||
+    []
+  const avatarLarge =
+    author.avatar_300x300?.url_list?.filter(Boolean) ||
+    video.music?.cover_medium?.url_list?.filter(Boolean) ||
+    avatarSmall
+  const profileCover =
+    author.cover_url?.[0]?.url_list?.filter(Boolean) || video.video?.cover?.url_list?.filter(Boolean) || []
+
+  return {
+    ...video,
+    type: 'recommend-video',
+    author: {
+      ...author,
+      avatar_168x168: ensureImageField(avatarSmall),
+      avatar_300x300: ensureImageField(avatarLarge),
+      cover_url: ensureImageCollection(profileCover),
+      white_cover_url: ensureImageCollection(profileCover)
+    }
+  }
+}
+
+function moveVideoToFirstByAuthor(videos: any[], nickname: string) {
+  const targetIndex = videos.findIndex(
+    (video) =>
+      video.author?.nickname === nickname ||
+      video.music?.author === nickname ||
+      video.music?.owner_nickname === nickname
+  )
+
+  if (targetIndex <= 0) {
+    return videos
+  }
+
+  const list = [...videos]
+  const [targetVideo] = list.splice(targetIndex, 1)
+  list.unshift(targetVideo)
+  return list
+}
+
+function findVideoIndexByAuthor(videos: any[], nickname: string) {
+  return videos.findIndex(
+    (video) =>
+      video.author?.nickname === nickname ||
+      video.music?.author === nickname ||
+      video.music?.owner_nickname === nickname
+  )
+}
+
+function swapVideosByAuthor(videos: any[], firstAuthor: string, secondAuthor: string) {
+  const firstIndex = findVideoIndexByAuthor(videos, firstAuthor)
+  const secondIndex = findVideoIndexByAuthor(videos, secondAuthor)
+
+  if (firstIndex === -1 || secondIndex === -1 || firstIndex === secondIndex) {
+    return videos
+  }
+
+  const list = [...videos]
+  ;[list[firstIndex], list[secondIndex]] = [list[secondIndex], list[firstIndex]]
+  return list
+}
+
+function moveVideoToIndexByAuthor(videos: any[], nickname: string, targetIndex: number) {
+  const currentIndex = findVideoIndexByAuthor(videos, nickname)
+  if (currentIndex === -1 || currentIndex === targetIndex) {
+    return videos
+  }
+
+  const list = [...videos]
+  const [targetVideo] = list.splice(currentIndex, 1)
+  list.splice(Math.max(0, Math.min(targetIndex, list.length)), 0, targetVideo)
+  return list
+}
+
+function getStoredFeedPersona() {
+  const persona = _storageGet(FEED_PERSONA_STORAGE_KEY, DEFAULT_FEED_PERSONA)
+  if (persona === FEED_PERSONA.SPORTS || persona === FEED_PERSONA.AI || persona === FEED_PERSONA.TECH) {
+    return persona
+  }
+  return DEFAULT_FEED_PERSONA
+}
+
+function buildRecommendVideos(videos: any[]) {
+  return videos.map((video: any) => normalizeRecommendVideo(video))
+}
+
+function buildTechRecommendVideos() {
+  return swapVideosByAuthor(
+    moveVideoToFirstByAuthor(buildRecommendVideos(techPosts), '品灰'),
+    '阿灿测评',
+    '在下库美'
+  )
+}
+
+function buildSportsRecommendVideos() {
+  return moveVideoToIndexByAuthor(
+    moveVideoToIndexByAuthor(buildRecommendVideos(sportsPosts), '小柒说剧', 0),
+    '足球人物记',
+    1
+  )
+}
+
+const recommendVideoSourceMap = {
+  [FEED_PERSONA.TECH]: buildTechRecommendVideos(),
+  [FEED_PERSONA.SPORTS]: buildSportsRecommendVideos(),
+  [FEED_PERSONA.AI]: buildRecommendVideos(aiPosts)
+}
+
+function getActiveRecommendVideos() {
+  return recommendVideoSourceMap[getStoredFeedPersona()] || recommendVideoSourceMap[DEFAULT_FEED_PERSONA]
+}
 
 function getPage2(params: any): { limit: number; offset: number; pageNo: number } {
   const offset = params.pageNo * params.pageSize
@@ -16,12 +154,8 @@ function getPage2(params: any): { limit: number; offset: number; pageNo: number 
 
 let allRecommendPosts = []
 let userVideos = []
-let allRecommendVideos = techPosts.map((v: any) => {
-  v.type = 'recommend-video'
-  return v
-})
 
-// console.log('allRecommendVideos', allRecommendVideos)
+// console.log('allRecommendVideos', getActiveRecommendVideos())
 // eslint-disable-next-line
 const t = [
   {
@@ -111,37 +245,17 @@ const t = [
 //   }
 // },
 
-async function fetchData() {
-  const baseStore = useBaseStore()
-  _fetch(BASE_URL + '/data/videos.md').then((r) => {
-    r.json().then(async (v) => {
-      let userList = cloneDeep(baseStore.users)
-      if (!userList.length) {
-        await baseStore.init()
-        userList = cloneDeep(baseStore.users)
-      }
-      v = v.map((w) => {
-        w.type = 'recommend-video'
-        const item: any = userList.find((a) => String(a.uid) === String(w.author_user_id))
-        if (item) w.author = item
-        return w
-      })
-      allRecommendVideos = allRecommendVideos.concat(v)
-    })
-  })
-}
-
 //TODO 有个bug，一开始只返回了6条数据，但第二次前端传过来的pageNo是2了，就是会从第10条数据开始返回，导致中间漏了4条
 export async function startMock() {
   mock.onGet(/video\/recommended/).reply(async (config) => {
     const { start, pageSize } = config.params
-    // console.log('allRecommendVideos', cloneDeep(allRecommendVideos.length), config.params)
+    const activeRecommendVideos = getActiveRecommendVideos()
     return [
       200,
       {
         data: {
-          total: 844,
-          list: allRecommendVideos.slice(start, start + pageSize) // list: allRecommendVideos.slice(0, 6),
+          total: activeRecommendVideos.length,
+          list: activeRecommendVideos.slice(start, start + pageSize)
         },
         code: 200,
         msg: ''
@@ -150,12 +264,13 @@ export async function startMock() {
   })
   mock.onGet(/video\/long\/recommended/).reply(async (config) => {
     const page = getPage2(config.params)
+    const activeRecommendVideos = getActiveRecommendVideos()
     return [
       200,
       {
         data: {
-          total: 844,
-          list: allRecommendVideos.slice(page.offset, page.limit)
+          total: activeRecommendVideos.length,
+          list: activeRecommendVideos.slice(page.offset, page.limit)
         },
         code: 200,
         msg: ''
@@ -196,12 +311,13 @@ export async function startMock() {
 
   mock.onGet(/video\/private/).reply(async (config) => {
     const page = getPage2(config.params)
+    const activeRecommendVideos = getActiveRecommendVideos()
     return [
       200,
       {
         data: {
           total: 10,
-          list: allRecommendVideos.slice(100, 110).slice(page.offset, page.limit)
+          list: activeRecommendVideos.slice(100, 110).slice(page.offset, page.limit)
         },
         code: 200,
         msg: ''
@@ -211,12 +327,13 @@ export async function startMock() {
 
   mock.onGet(/video\/like/).reply(async (config) => {
     const page = getPage2(config.params)
+    const activeRecommendVideos = getActiveRecommendVideos()
     return [
       200,
       {
         data: {
           total: 150,
-          list: allRecommendVideos.slice(200, 350).slice(page.offset, page.limit)
+          list: activeRecommendVideos.slice(200, 350).slice(page.offset, page.limit)
         },
         code: 200,
         msg: ''
@@ -259,12 +376,13 @@ export async function startMock() {
 
   mock.onGet(/video\/history/).reply(async (config) => {
     const page = getPage2(config.params)
+    const activeRecommendVideos = getActiveRecommendVideos()
     return [
       200,
       {
         data: {
           total: 150,
-          list: allRecommendVideos.slice(200, 350).slice(page.offset, page.limit)
+          list: activeRecommendVideos.slice(200, 350).slice(page.offset, page.limit)
         },
         code: 200,
         msg: ''
@@ -273,13 +391,14 @@ export async function startMock() {
   })
 
   mock.onGet(/user\/collect/).reply(async () => {
+    const activeRecommendVideos = getActiveRecommendVideos()
     return [
       200,
       {
         data: {
           video: {
             total: 50,
-            list: allRecommendVideos.slice(350, 400)
+            list: activeRecommendVideos.slice(350, 400)
           },
           music: {
             total: resource.music.length,
@@ -373,6 +492,4 @@ export async function startMock() {
       }
     ]
   })
-
-  setTimeout(fetchData, 1000)
 }
