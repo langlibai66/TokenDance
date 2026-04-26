@@ -149,6 +149,12 @@ LLM 抽取意图、偏好、约束和证据
 5. **前端信息流展示**
    前端只消费结构化卡片数据，不在组件里硬编码复杂分析逻辑。
 
+## 可视化物料
+
+项目答辩和文档中使用的 `GPT-Image-2` 架构图 prompt 已整理在：
+
+- [docs/gpt-image-2-prompts.md](/Users/moyi/workspace/flow_me/TokenDance/docs/gpt-image-2-prompts.md)
+
 ## 工程分工
 
 仓库当前包含两个主要工程：
