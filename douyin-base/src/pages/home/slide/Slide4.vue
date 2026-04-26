@@ -13,17 +13,13 @@
 import SlideItem from '@/components/slide/SlideItem.vue'
 import SlideList from './SlideList.vue'
 import { recommendedVideo } from '@/api/videos'
+import { _storageGet } from '@/utils'
+import { DEFAULT_FEED_PERSONA, FEED_PERSONA, FEED_PERSONA_STORAGE_KEY } from '@/constants/feedPersona'
 
 const BRUSH_COMPARE_CARD = {
   aweme_id: 'brush-compare-card',
   desc: '推荐专题：iPhone 17 / iPhone 17 Air / iPhone 17 Pro 横评对比',
   type: 'brush-compare'
-}
-
-const FOOTBALL_PREVIEW_CARD = {
-  aweme_id: 'football-preview-card',
-  desc: '赛前看点：国家德比 皇马 vs 巴萨',
-  type: 'football-preview'
 }
 
 const props = defineProps({
@@ -33,6 +29,11 @@ const props = defineProps({
   }
 })
 
+function isTechFeedPersona() {
+  const persona = _storageGet(FEED_PERSONA_STORAGE_KEY, DEFAULT_FEED_PERSONA)
+  return persona === FEED_PERSONA.TECH
+}
+
 async function recommendedVideoWithBrushCard(params) {
   const res = await recommendedVideo(params)
   if (!res?.success) return res
@@ -41,14 +42,9 @@ async function recommendedVideoWithBrushCard(params) {
   const list = Array.isArray(res.data?.list) ? [...res.data.list] : []
   let insertedCount = 0
 
-  if (start === 0) {
+  if (start === 0 && isTechFeedPersona()) {
     if (!list.some((item) => item.type === 'brush-compare')) {
-      list.splice(Math.min(1, list.length), 0, BRUSH_COMPARE_CARD)
-      insertedCount += 1
-    }
-
-    if (!list.some((item) => item.type === 'football-preview')) {
-      list.splice(Math.min(3, list.length), 0, FOOTBALL_PREVIEW_CARD)
+      list.splice(Math.min(3, list.length), 0, BRUSH_COMPARE_CARD)
       insertedCount += 1
     }
   }

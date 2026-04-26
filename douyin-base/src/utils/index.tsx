@@ -9,7 +9,6 @@ import { ArchiveReader, libarchiveWasm } from 'libarchive-wasm'
 import SlideUser from '@/components/slide/SlideUser.vue'
 import BaseVideo from '@/components/slide/BaseVideo.vue'
 import BrushCompare from '@/pages/home/slide/BrushCompare.vue'
-import FootballPreview from '@/pages/home/slide/FootballPreview.vue'
 
 export function _storageSet(key, value) {
   localStorage.setItem(key, JSON.stringify(value))
@@ -427,9 +426,6 @@ export function slideItemRender(props) {
         break
       case 'brush-compare':
         node = <BrushCompare active={play} item={item} />
-        break
-      case 'football-preview':
-        node = <FootballPreview active={play} />
         break
       default:
         node = (

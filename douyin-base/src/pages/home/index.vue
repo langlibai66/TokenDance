@@ -81,7 +81,7 @@
               <Icon icon="solar:history-linear" />
               <span>观看历史</span>
             </div>
-            <div class="item" @click="_no">
+            <div class="item" @click="openFeedPersonaPicker">
               <Icon icon="fluent:content-settings-24-regular" />
               <span>内容偏好</span>
             </div>
@@ -114,7 +114,11 @@
           :change-active-index-use-anim="false"
           v-model:index="state.navIndex"
         >
-          <Slide4 :active="state.navIndex === 0 && state.baseIndex === 1" />
+          <Slide4
+            v-if="state.selectedPersona"
+            :key="state.selectedPersona"
+            :active="state.navIndex === 0 && state.baseIndex === 1"
+          />
         </SlideHorizontal>
 
         <BaseFooter v-bind:init-tab="1" />
@@ -191,16 +195,31 @@
 
     <ShareToFriend v-model="state.shareToFriend" />
 
-    <BaseMask v-if="!isMobile" @click="isMobile = true" />
-    <div v-if="!isMobile" class="guide">
+    <BaseMask v-if="state.showFeedPersonaGuide" />
+    <div v-if="state.showFeedPersonaGuide" class="guide">
       <Icon class="danger" icon="mynaui:danger-triangle" />
-      <Icon class="close" icon="simple-line-icons:close" @click="isMobile = true" />
+      <Icon
+        v-if="state.selectedPersona"
+        class="close"
+        icon="simple-line-icons:close"
+        @click="state.showFeedPersonaGuide = false"
+      />
       <div class="txt">
-        <h2>切换至手机模式获取最佳体验</h2>
-        <h3>1. 按 F12 调出控制台</h3>
-        <h3>2. 按 Ctrl+Shift+M，或点击下面图标</h3>
+        <h2>请选择推荐 Case</h2>
+        <p>不同 case 会加载不同推荐视频数据源</p>
       </div>
-      <img src="@/assets/img/guide.png" alt="" />
+      <div class="case-list">
+        <button
+          v-for="option in feedPersonaOptions"
+          :key="option.value"
+          class="case-item"
+          type="button"
+          @click="chooseFeedPersona(option.value)"
+        >
+          <span class="title">{{ option.label }}</span>
+          <span class="desc">{{ option.desc }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -226,14 +245,35 @@ import ShareToFriend from '@/pages/home/components/ShareToFriend.vue'
 import UserPanel from '@/components/UserPanel.vue'
 import Slide4 from '@/pages/home/slide/Slide4.vue'
 import { DefaultUser } from '@/utils/const_var'
-import { _no } from '@/utils'
+import { _no, _storageSet } from '@/utils'
 import { useBaseStore } from '@/store/pinia'
 import BaseMask from '@/components/BaseMask.vue'
+import { FEED_PERSONA, FEED_PERSONA_STORAGE_KEY } from '@/constants/feedPersona'
 
 const nav = useNav()
 const baseStore = useBaseStore()
 const uploader = ref()
-const isMobile = ref(/Mobi|Android|iPhone/i.test(navigator.userAgent))
+
+// 每次刷新后重新询问推荐 case，避免沿用上一次选择。
+_storageSet(FEED_PERSONA_STORAGE_KEY, '')
+
+const feedPersonaOptions = [
+  {
+    value: FEED_PERSONA.TECH,
+    label: '数码发烧友',
+    desc: '加载 tech_posts.json 推荐流'
+  },
+  {
+    value: FEED_PERSONA.SPORTS,
+    label: '球迷',
+    desc: '加载 sports_posts.json 推荐流'
+  },
+  {
+    value: FEED_PERSONA.AI,
+    label: 'AI迷',
+    desc: '加载 ai_posts.json 推荐流'
+  }
+]
 
 const state = reactive({
   active: true,
@@ -255,6 +295,8 @@ const state = reactive({
   showBlockDialog: false,
   showChangeNote: false,
   shareToFriend: false,
+  selectedPersona: '',
+  showFeedPersonaGuide: true,
 
   commentVisible: false,
   fullScreen: false,
@@ -265,6 +307,16 @@ const state = reactive({
     aweme_list: []
   }
 })
+
+function chooseFeedPersona(persona: string) {
+  state.selectedPersona = persona
+  state.showFeedPersonaGuide = false
+  _storageSet(FEED_PERSONA_STORAGE_KEY, persona)
+}
+
+function openFeedPersonaPicker() {
+  state.showFeedPersonaGuide = true
+}
 
 function delayShowDialog(cb: Function) {
   setTimeout(cb, 400)
@@ -471,11 +523,12 @@ function dislike() {
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 16rem;
-  overflow: hidden;
   text-align: center;
+  width: min(420rem, calc(100vw - 32rem));
+  padding: 24rem;
+  box-sizing: border-box;
 
   .danger {
-    margin-top: 10rem;
     font-size: 40rem;
     color: red;
   }
@@ -491,12 +544,54 @@ function dislike() {
 
   .txt {
     text-align: left;
-    padding: 0 24rem;
+    margin: 16rem 0 20rem;
+
+    h2 {
+      margin: 0 0 8rem;
+      font-size: 22rem;
+    }
+
+    p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14rem;
+      line-height: 1.5;
+    }
   }
 
-  img {
-    display: block;
-    width: 350rem;
+  .case-list {
+    display: grid;
+    gap: 12rem;
+  }
+
+  .case-item {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    padding: 16rem;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+
+    .title {
+      font-size: 16rem;
+      font-weight: 600;
+    }
+
+    .desc {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 13rem;
+      line-height: 1.5;
+    }
+  }
+
+  .case-item:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
   }
 }
 </style>

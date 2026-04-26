@@ -27,6 +27,13 @@ let modelRoot: THREE.Group | null = null
 let resizeObserver: ResizeObserver | null = null
 let animationFrame = 0
 let disposed = false
+let loadedModel: THREE.Object3D | null = null
+let modelBounds:
+  | {
+      center: THREE.Vector3
+      size: THREE.Vector3
+    }
+  | null = null
 const clock = new THREE.Clock()
 // Rotate 180deg from the default front-facing view so the phone back is shown first.
 const baseRotation = Math.PI - 0.55
@@ -39,7 +46,12 @@ function resizeRenderer() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
   renderer.setSize(width, height, false)
   camera.aspect = width / height
+  camera.position.set(0, 0.08, camera.aspect < 0.82 ? 4.9 : 4.35)
   camera.updateProjectionMatrix()
+
+  if (loadedModel) {
+    frameModel(loadedModel)
+  }
 }
 
 function setupScene() {
@@ -112,18 +124,39 @@ function disposeObject(root: THREE.Object3D) {
 }
 
 function normalizeModel(root: THREE.Object3D) {
-  if (!modelRoot) return
-
   const bounds = new THREE.Box3().setFromObject(root)
   if (bounds.isEmpty()) return
 
-  const size = bounds.getSize(new THREE.Vector3())
-  const center = bounds.getCenter(new THREE.Vector3())
-  const maxSize = Math.max(size.x, size.y, size.z)
-  const scale = maxSize > 0 ? 1.82 / maxSize : 1
+  modelBounds = {
+    size: bounds.getSize(new THREE.Vector3()),
+    center: bounds.getCenter(new THREE.Vector3())
+  }
+
+  frameModel(root)
+}
+
+function frameModel(root: THREE.Object3D) {
+  if (!modelRoot || !camera || !modelBounds) return
+
+  const { size, center } = modelBounds
+  const distance = camera.position.distanceTo(new THREE.Vector3(0, 0, 0))
+  const fov = THREE.MathUtils.degToRad(camera.fov)
+  const viewHeight = 2 * Math.tan(fov / 2) * distance
+  const viewWidth = viewHeight * camera.aspect
+  const fitHeight = viewHeight * 0.8
+  const fitWidth = viewWidth * (camera.aspect < 0.82 ? 0.52 : 0.64)
+  const scale = Math.min(
+    size.x > 0 ? fitWidth / size.x : Infinity,
+    size.y > 0 ? fitHeight / size.y : Infinity,
+    size.z > 0 ? fitWidth / size.z : Infinity
+  )
 
   root.scale.setScalar(scale)
-  root.position.set(-center.x * scale, -center.y * scale - 0.02, -center.z * scale)
+  root.position.set(
+    -center.x * scale,
+    -center.y * scale - size.y * scale * 0.035,
+    -center.z * scale
+  )
   modelRoot.rotation.set(-0.12, baseRotation, 0.05)
 }
 
@@ -139,6 +172,7 @@ async function loadModel() {
     }
 
     modelRoot.add(gltf.scene)
+    loadedModel = gltf.scene
     normalizeModel(gltf.scene)
   } catch (error) {
     if (!disposed) {
@@ -175,6 +209,9 @@ function cleanup() {
     scene?.remove(modelRoot)
     modelRoot = null
   }
+
+  loadedModel = null
+  modelBounds = null
 
   scene?.environment?.dispose?.()
   pmremGenerator?.dispose()
