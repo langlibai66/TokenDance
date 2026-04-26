@@ -7,30 +7,30 @@
         <header class="match-head">
           <div>
             <span class="section-chip">赛前看点</span>
-            <h2>国家德比</h2>
-            <p>皇马 vs 巴萨</p>
+            <h2>世界杯前瞻</h2>
+            <p>葡萄牙国家队参赛球队观察</p>
           </div>
           <div class="match-meta">
-            <strong>伯纳乌</strong>
-            <span>西甲焦点战</span>
+            <strong>Portugal</strong>
+            <span>阵容厚度与淘汰赛上限</span>
           </div>
         </header>
 
         <section class="match-banner">
           <div class="club club-real">
-            <span class="club-badge">RMA</span>
-            <strong>皇家马德里</strong>
-            <p>主场冲冠窗口</p>
+            <span class="club-badge">POR</span>
+            <strong>葡萄牙</strong>
+            <p>边路爆点 + 中场组织双线在线</p>
           </div>
           <div class="vs-box">
-            <span>04 / 26</span>
-            <strong>VS</strong>
-            <p>国家德比夜</p>
+            <span>2026</span>
+            <strong>WC</strong>
+            <p>冲击四强的热门候选</p>
           </div>
           <div class="club club-barca">
-            <span class="club-badge">FCB</span>
-            <strong>巴塞罗那</strong>
-            <p>年轻锋线提速</p>
+            <span class="club-badge">11</span>
+            <strong>核心轴线</strong>
+            <p>B 费调度，B 席串联，莱奥提速，C 罗终结</p>
           </div>
         </section>
 
@@ -67,9 +67,9 @@
         </section>
 
         <footer class="prediction-card">
-          <span>比赛倾向</span>
-          <strong>皇马更稳，巴萨更快</strong>
-          <p>如果皇马先把中场站住，德比赛事很可能会进入强度与转换拉满的对攻节奏。</p>
+          <span>球队倾向</span>
+          <strong>葡萄牙上限够高，关键在防线抗压与锋线效率</strong>
+          <p>如果中场先把比赛节奏接住，再把边锋单挑能力转化成禁区产出，葡萄牙具备连续过关的硬实力。</p>
         </footer>
       </div>
     </div>
@@ -89,25 +89,25 @@ const props = defineProps({
 const focusList = [
   {
     tag: '看点 01',
-    title: '贝林厄姆与京多安谁能先拿住中场第二点',
-    text: '皇马擅长把二点球变成推进起点，巴萨则更依赖控球落位后的二次组织。'
+    title: '中场控制力决定葡萄牙能否把天赋稳定兑现',
+    text: 'B 费、维蒂尼亚和 B 席的拿球与推进质量，将直接决定球队能不能持续把球送到危险区域。'
   },
   {
     tag: '看点 02',
-    title: '维尼修斯冲击边路，巴萨年轻防线能否持续回追',
-    text: '一旦巴萨高位压迫没能形成反抢，皇马的纵向推进会直接考验边后卫身后保护。'
+    title: '莱奥与边路群的单点爆破，是打开僵局的最快方式',
+    text: '当淘汰赛进入低容错节奏，葡萄牙最需要的是边锋把一对一优势转化成真实射门和制造犯规。'
   },
   {
     tag: '看点 03',
-    title: '亚马尔和莱万的终结效率，决定巴萨反扑上限',
-    text: '巴萨的机会质量未必少，关键是能不能在高压客场里把有限射门打成进球。'
+    title: '后场保护与高空防守，是冲击更深轮次的最后门槛',
+    text: '葡萄牙进攻资源足够亮眼，但遇到冲吊和转换强队时，双中卫与门将的处理稳定性会成为关键变量。'
   }
 ]
 
 const meterList = [
-  { key: 'transition', label: '转换冲击', left: '皇马', right: '巴萨', value: { left: 86, right: 75 } },
-  { key: 'control', label: '阵地控制', left: '皇马', right: '巴萨', value: { left: 74, right: 88 } },
-  { key: 'finishing', label: '门前效率', left: '皇马', right: '巴萨', value: { left: 84, right: 80 } }
+  { key: 'transition', label: '边路爆点', left: '葡萄牙', right: '世界杯强队均值', value: { left: 90, right: 78 } },
+  { key: 'control', label: '中场控制', left: '葡萄牙', right: '世界杯强队均值', value: { left: 86, right: 80 } },
+  { key: 'finishing', label: '禁区终结', left: '葡萄牙', right: '世界杯强队均值', value: { left: 82, right: 79 } }
 ]
 
 const animatedMeters = ref(
@@ -121,10 +121,10 @@ const animatedMeters = ref(
 )
 
 const themeStyle = computed(() => ({
-  '--real-main': '#f4d68f',
-  '--real-deep': '#5f4a20',
-  '--barca-main': '#7aa7ff',
-  '--barca-deep': '#102d6a'
+  '--real-main': '#f56b6b',
+  '--real-deep': '#6a1018',
+  '--barca-main': '#55d3a4',
+  '--barca-deep': '#0d4f3f'
 }))
 
 let frameId = 0

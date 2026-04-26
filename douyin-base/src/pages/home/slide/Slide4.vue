@@ -22,6 +22,18 @@ const BRUSH_COMPARE_CARD = {
   type: 'brush-compare'
 }
 
+const FOOTBALL_PREVIEW_CARD = {
+  aweme_id: 'football-preview-card',
+  desc: '世界杯前瞻：葡萄牙国家队参赛球队观察',
+  type: 'football-preview'
+}
+
+const AI_DAILY_CARD = {
+  aweme_id: 'ai-daily-card',
+  desc: 'AI 日报：DeepSeek、GPT-5.5 与具身智能大单',
+  type: 'ai-daily'
+}
+
 const props = defineProps({
   active: {
     type: Boolean,
@@ -32,6 +44,16 @@ const props = defineProps({
 function isTechFeedPersona() {
   const persona = _storageGet(FEED_PERSONA_STORAGE_KEY, DEFAULT_FEED_PERSONA)
   return persona === FEED_PERSONA.TECH
+}
+
+function isSportsFeedPersona() {
+  const persona = _storageGet(FEED_PERSONA_STORAGE_KEY, DEFAULT_FEED_PERSONA)
+  return persona === FEED_PERSONA.SPORTS
+}
+
+function isAiFeedPersona() {
+  const persona = _storageGet(FEED_PERSONA_STORAGE_KEY, DEFAULT_FEED_PERSONA)
+  return persona === FEED_PERSONA.AI
 }
 
 async function recommendedVideoWithBrushCard(params) {
@@ -45,6 +67,20 @@ async function recommendedVideoWithBrushCard(params) {
   if (start === 0 && isTechFeedPersona()) {
     if (!list.some((item) => item.type === 'brush-compare')) {
       list.splice(Math.min(3, list.length), 0, BRUSH_COMPARE_CARD)
+      insertedCount += 1
+    }
+  }
+
+  if (start === 0 && isSportsFeedPersona()) {
+    if (!list.some((item) => item.type === 'football-preview')) {
+      list.splice(Math.min(2, list.length), 0, FOOTBALL_PREVIEW_CARD)
+      insertedCount += 1
+    }
+  }
+
+  if (start === 0 && isAiFeedPersona()) {
+    if (!list.some((item) => item.type === 'ai-daily')) {
+      list.splice(Math.min(1, list.length), 0, AI_DAILY_CARD)
       insertedCount += 1
     }
   }
