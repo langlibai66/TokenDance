@@ -141,8 +141,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import bus, { EVENT_KEY } from '@/utils/bus'
-import { useNav } from '@/utils/hooks/useNav'
-import { recommendedVideo } from '@/api/videos'
+import { _showNoticeDialog } from '@/utils'
 import GlbPhoneViewer from './GlbPhoneViewer.vue'
 import iphone17Glb from '@/assets/3d_data/glb/iphone-17.glb?url'
 import iphone17AirGlb from '@/assets/3d_data/glb/iphone-17-air.glb?url'
@@ -180,8 +179,6 @@ const props = defineProps({
     default: () => ({})
   }
 })
-
-const nav = useNav()
 
 const axes = ['性能', '影像', '续航', '手感', '屏幕', '性价比']
 const labelClasses = [
@@ -367,10 +364,14 @@ function handleCurrentItem(item) {
   }
 }
 
-async function goToReferenceVideo() {
-  const res = await recommendedVideo({ start: 0, pageSize: 8 })
-  if (!res?.success || !Array.isArray(res.data?.list) || !res.data.list.length) return
-  nav('/video-detail', {}, { list: res.data.list, index: 0 })
+function goToReferenceVideo() {
+  _showNoticeDialog(
+    '搜索功能开发中',
+    '即将跳转搜索界面，请等待后续开发。',
+    '#cfd8e8',
+    () => {},
+    '知道了'
+  )
 }
 
 onMounted(() => {

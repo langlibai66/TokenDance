@@ -16,7 +16,7 @@
           </div>
         </header>
 
-        <section class="headline-card headline-deepseek">
+        <section class="headline-card headline-deepseek" @click="handleHeadlineClick">
           <div class="headline-top">
             <span class="headline-rank">01</span>
             <div>
@@ -35,7 +35,7 @@
         </section>
 
         <section class="headline-grid">
-          <article class="headline-card">
+          <article class="headline-card" @click="handleHeadlineClick">
             <div class="headline-top">
               <span class="headline-rank">02</span>
               <div>
@@ -52,7 +52,7 @@
             </p>
           </article>
 
-          <article class="headline-card">
+          <article class="headline-card" @click="handleHeadlineClick">
             <div class="headline-top">
               <span class="headline-rank">03</span>
               <div>
@@ -73,6 +73,20 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { _showNoticeDialog } from '@/utils'
+
+function handleHeadlineClick() {
+  _showNoticeDialog(
+    '搜索功能开发中',
+    '即将跳转搜索界面，请等待后续开发。',
+    '#cfd8e8',
+    () => {},
+    '知道了'
+  )
+}
+</script>
 
 <style scoped lang="less">
 .ai-daily-card {
@@ -181,6 +195,7 @@
     display: flex;
     flex-direction: column;
     gap: 12rem;
+    cursor: pointer;
   }
 
   .headline-deepseek {

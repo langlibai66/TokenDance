@@ -40,7 +40,12 @@
             <strong>赛前速读</strong>
           </div>
 
-          <article v-for="focus in focusList" :key="focus.title" class="focus-card">
+          <article
+            v-for="focus in focusList"
+            :key="focus.title"
+            class="focus-card"
+            @click="handleFocusCardClick"
+          >
             <span class="focus-tag">{{ focus.tag }}</span>
             <strong>{{ focus.title }}</strong>
             <p>{{ focus.text }}</p>
@@ -78,6 +83,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { _showNoticeDialog } from '@/utils'
 
 const props = defineProps({
   active: {
@@ -128,6 +134,16 @@ const themeStyle = computed(() => ({
 }))
 
 let frameId = 0
+
+function handleFocusCardClick() {
+  _showNoticeDialog(
+    '搜索功能开发中',
+    '即将跳转搜索界面，请等待后续开发。',
+    '#cfd8e8',
+    () => {},
+    '知道了'
+  )
+}
 
 function replayMeters() {
   if (frameId) {
@@ -370,6 +386,7 @@ onBeforeUnmount(() => {
     background: rgba(255, 255, 255, 0.04);
     display: grid;
     gap: 6rem;
+    cursor: pointer;
   }
 
   .focus-tag {
