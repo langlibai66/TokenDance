@@ -28,7 +28,8 @@ let resizeObserver: ResizeObserver | null = null
 let animationFrame = 0
 let disposed = false
 const clock = new THREE.Clock()
-const baseRotation = -0.55
+// Rotate 180deg from the default front-facing view so the phone back is shown first.
+const baseRotation = Math.PI - 0.55
 
 function resizeRenderer() {
   if (!hostRef.value || !renderer || !camera) return

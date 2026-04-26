@@ -1,5 +1,5 @@
 import resource from '../assets/data/resource.js'
-import posts6 from '@/assets/data/posts6.json'
+import techPosts from '@/assets/data/tech_posts.json'
 import { _fetch, cloneDeep, random } from '@/utils'
 import { BASE_URL, FILE_URL } from '@/config'
 import { useBaseStore } from '@/store/pinia'
@@ -16,7 +16,7 @@ function getPage2(params: any): { limit: number; offset: number; pageNo: number 
 
 let allRecommendPosts = []
 let userVideos = []
-let allRecommendVideos = posts6.map((v: any) => {
+let allRecommendVideos = techPosts.map((v: any) => {
   v.type = 'recommend-video'
   return v
 })
