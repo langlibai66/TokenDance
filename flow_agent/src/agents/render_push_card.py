@@ -10,7 +10,7 @@ from src.models.card import CardBrief, CardSpec
 from src.services.html_renderer import render_card_html
 from src.services.io import load_json, save_json, save_text
 from src.services.llm import AsyncLLMService
-from src.services.paths import default_output_dir
+from src.services.paths import DEFAULT_USER_ID, default_output_dir
 from src.services.search import SearchService
 from src.services.text_utils import slugify
 
@@ -98,7 +98,7 @@ class PushCardRenderAgent:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Render push card html")
-    parser.add_argument("--user-id", required=True)
+    parser.add_argument("--user-id", default=DEFAULT_USER_ID)
     parser.add_argument("--brief", type=Path, default=None)
     parser.add_argument("--output-dir", type=Path, default=None)
     return parser

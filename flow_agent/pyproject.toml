@@ -24,6 +24,7 @@ dependencies = [
 extract-profile-skill = "src.agents.extract_profile_skill:main"
 select-push-card = "src.agents.select_push_card:main"
 render-push-card = "src.agents.render_push_card:main"
+run-demo-pipeline = "src.agents.run_demo_pipeline:main"
 
 [dependency-groups]
 dev = [

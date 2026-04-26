@@ -10,7 +10,11 @@ from src.models.events import EventSearchLog
 from src.models.profile import ProfileSkillDocument
 from src.services.io import load_json, save_text
 from src.services.llm import AsyncLLMService
-from src.services.paths import default_output_dir, default_user_event_log_path
+from src.services.paths import (
+    DEFAULT_USER_ID,
+    default_output_dir,
+    default_user_event_log_path,
+)
 from src.services.profile_skill_doc import render_profile_skill_markdown
 
 
@@ -112,7 +116,7 @@ class ProfileSkillExtractionAgent:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Extract profile skill markdown")
-    parser.add_argument("--user-id", required=True)
+    parser.add_argument("--user-id", default=DEFAULT_USER_ID)
     parser.add_argument("--input", type=Path, default=None)
     parser.add_argument("--output-dir", type=Path, default=None)
     return parser

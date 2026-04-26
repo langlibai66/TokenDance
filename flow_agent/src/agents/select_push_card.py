@@ -10,7 +10,11 @@ from src.models.events import CurrentEvent
 from src.models.profile import ProfileSkillDocument, SkillDefinition
 from src.services.io import load_json, save_json
 from src.services.llm import AsyncLLMService
-from src.services.paths import default_current_event_path, default_output_dir
+from src.services.paths import (
+    DEFAULT_USER_ID,
+    default_current_event_path,
+    default_output_dir,
+)
 from src.services.profile_skill_doc import parse_profile_skill_markdown
 from src.services.text_utils import extract_tokens
 
@@ -122,7 +126,7 @@ class PushCardSelectionAgent:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Select top-1 push card")
-    parser.add_argument("--user-id", required=True)
+    parser.add_argument("--user-id", default=DEFAULT_USER_ID)
     parser.add_argument("--profile-skill", type=Path, default=None)
     parser.add_argument("--current-event", type=Path, default=None)
     parser.add_argument("--output-dir", type=Path, default=None)

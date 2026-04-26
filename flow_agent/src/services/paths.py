@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+DEFAULT_USER_ID = "college_tech_award_student_001"
+
 
 def flow_agent_root() -> Path:
     return Path(__file__).resolve().parents[2]
